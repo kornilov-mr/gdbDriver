@@ -14,7 +14,7 @@ import java.util.Queue;
 public class OutputStreamHandler extends Thread {
 
     //InputStream for gdb
-    private final InputStream inputStream;
+    private final InputStreamReader inputStreamReader;
 
     //Configs what user Creates
     private final DebuggerConfig debuggerConfig;
@@ -35,18 +35,18 @@ public class OutputStreamHandler extends Thread {
     //Variable for counting rows to go up or down while code visualization
     private int rowShift=0;
 
-    public OutputStreamHandler(InputStream inputStream, OutputStream outputStream,
+    public OutputStreamHandler(InputStreamReader inputStreamReader, OutputStream outputStream,
                                DebuggerConfig debuggerConfig, OutputConfig outputConfig,
                                String directory,
                                Queue<String> UserCommandQueue,
                                ThreadManager threadManager) {
 
-        this.inputStream = inputStream;
+        this.inputStreamReader = inputStreamReader;
 
         this.debuggerConfig = debuggerConfig;
         this.UserCommandQueue = UserCommandQueue;
 
-        this.commandExecutor = new CommandExecutor(outputStream, inputStream);
+        this.commandExecutor = new CommandExecutor(outputStream, inputStreamReader);
 
         this.outputInformationWritter = new OutputInformationWritter(outputConfig,commandExecutor,directory);
 
@@ -59,7 +59,7 @@ public class OutputStreamHandler extends Thread {
         String location = null;
         while (true) {
 
-            String newLine = commandExecutor.readNextLine(inputStream);
+            String newLine = commandExecutor.readNextLine();
 
             //Getting location where gdb hits breakpoint or catches an exception
             String temp = tryToGetLocation(newLine);
@@ -105,7 +105,7 @@ public class OutputStreamHandler extends Thread {
         if(newLine.contains("exception")){
             //Executing all callbacks, which have this location
             debuggerConfig.catcher.executeCallbacks(outputConfig,UserCommandQueue);
-            String line = commandExecutor.readNextLine(inputStream);
+            String line = commandExecutor.readNextLine();
             return getLocationFromBreakPoint(line);
         }
         //Getting location if gdb hit a breakpoint

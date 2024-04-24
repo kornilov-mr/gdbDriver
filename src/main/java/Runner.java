@@ -19,7 +19,7 @@ public class Runner {
         BreakPoint testBreakPoint = new BreakPoint("main.cpp",6);
 
         testBreakPoint.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueue) ->{
-            userCommandQueue.add("info locals"+"\n");
+//            userCommandQueue.add("info locals"+"\n");
         });
 
         testBreakPoint.addCallback((OutputConfig outputConfig) ->{
@@ -32,7 +32,7 @@ public class Runner {
 
         catcher.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueue) ->{
             outputConfig.writeLine("Catch");
-            userCommandQueue.add("info locals"+"\n");
+//            userCommandQueue.add("info locals"+"\n");
         });
 
         debuggerConfig.setCatcher(catcher);

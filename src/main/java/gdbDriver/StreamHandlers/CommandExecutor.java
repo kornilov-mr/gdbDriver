@@ -12,16 +12,16 @@ import static java.lang.Thread.sleep;
 
 public class CommandExecutor {
     private final OutputStream outputStream;
-    private final InputStream inputStream;
+    private final InputStreamReader inputStreamReader;
 
-    public CommandExecutor(OutputStream outputStream, InputStream inputStream) {
+    public CommandExecutor(OutputStream outputStream, InputStreamReader inputStreamReader) {
         this.outputStream = outputStream;
-        this.inputStream = inputStream;
+        this.inputStreamReader = inputStreamReader;
     }
     //For Testing
     public CommandExecutor(InputStreamReader in, PrintStream out) {
         this.outputStream = out;
-        this.inputStream = new ReaderInputStream(in, StandardCharsets.UTF_8);;
+        this.inputStreamReader = in;
     }
 
     public void skipToNextGDB(){
@@ -31,8 +31,8 @@ public class CommandExecutor {
             throw new RuntimeException(e);
         }
         while (true) {
-            String newLine = readNextLine(inputStream);
-            if (Objects.equals(newLine, "")) {
+            String newLine = readNextLine();
+            if (Objects.equals(newLine, "(gdb) ")) {
                 break;
             }
         }
@@ -58,7 +58,7 @@ public class CommandExecutor {
         Vector<String> localInfo=new Vector<>();
         while (true) {
             //Reading output before we hit (gdb)
-            String newLine = readNextLine(inputStream);
+            String newLine = readNextLine();
             if (Objects.equals(newLine, "(gdb) ")) {
                 break;
             }
@@ -72,21 +72,20 @@ public class CommandExecutor {
         return localInfo;
     }
 
-    public String readNextLine(InputStream IS) {
+    public String readNextLine() {
         //Reading next line without stopping if a line isn't closed
-        InputStreamReader ISR = new InputStreamReader(IS);
         StringBuilder sb = new StringBuilder();
         try {
             while (true) {
                 if (Objects.equals(sb.toString(), "(gdb) ")) {
                     return sb.toString();
                 }
-                if (!ISR.ready()) {
+                if (!inputStreamReader.ready()) {
                     if (Objects.equals(sb.toString(), "")) {
                         return sb.toString();
                     }
                 }
-                int foo = ISR.read();
+                int foo = inputStreamReader.read();
                 char c = (char) foo;
                 if (foo == 10 || foo == 13) {
                     return sb.toString();

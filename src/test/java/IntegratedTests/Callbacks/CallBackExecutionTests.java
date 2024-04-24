@@ -40,7 +40,7 @@ public class CallBackExecutionTests {
         System.setIn(is);
 
         File sourceFile= new File("src/main/java/examples/cppFiles/BreakPointExample.cpp");
-        File logFile= new File("src/test/java/integratedTests/BreakPointExecutionTestLog.txt");
+        File logFile= new File("src/test/java/integratedTests/Callbacks/BreakPointExecutionTestLog.txt");
 
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
@@ -52,7 +52,7 @@ public class CallBackExecutionTests {
 
         debuggerConfig.addBreakPoint(testBreakPoint);
 
-        OutputConfig outputConfig = new OutputConfig(false);
+        OutputConfig outputConfig = new OutputConfig(true);
         outputConfig.setLogFile(logFile);
 
         Driver driver = new Driver(debuggerConfig,outputConfig);
@@ -76,7 +76,7 @@ public class CallBackExecutionTests {
         System.setIn(is);
 
         File sourceFile= new File("src/main/java/examples/cppFiles/CatcherExample.cpp");
-        File logFile= new File("src/test/java/integratedTests/CatcherExecutionTestLog.txt");
+        File logFile= new File("src/test/java/integratedTests/Callbacks/CatcherExecutionTestLog.txt");
 
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
@@ -111,7 +111,7 @@ public class CallBackExecutionTests {
         System.setIn(is);
 
         File sourceFile= new File("src/main/java/examples/cppFiles/IntegratedCallbacksExample.cpp");
-        File logFile= new File("src/test/java/integratedTests/IntegratedCallbackExecutionTestLog.txt");
+        File logFile= new File("src/test/java/integratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt");
 
 
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");

@@ -11,6 +11,8 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import static java.lang.Thread.sleep;
+
 
 public class Driver {
     //Configs what user Creates
@@ -77,7 +79,7 @@ public class Driver {
         //Starting thread, what is responsible for general output from gdb and preforms all code visualization
         //and applying other output configs
         OutputStreamHandler outputStreamHandler = new OutputStreamHandler(
-                inputStream,
+                new InputStreamReader(inputStream),
                 outputStream,
                 debuggerConfig,
                 outputConfig,
@@ -130,7 +132,6 @@ public class Driver {
         String[] temp = sourceFile.getName().split("\\.");
         String extension = "." + temp[temp.length - 1];
         this.executableFile = new File(sourceFile.getAbsolutePath().replace(extension, ".exe"));
-
         return "g++ -g -std=c++14 " + sourceFile.getName() + " -o " + sourceFile.getName().replace(extension, "");
 
     }
