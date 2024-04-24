@@ -1,0 +1,19 @@
+Reading symbols from C:\Users\ThinkPad\Desktop\gdbDriver\src\main\java\examples\cppFiles\IntegratedCallbacksExample.exe...
+Breakpoint 1 at 0x14000149a: file IntegratedCallbacksExample.cpp, line 11.
+Breakpoint 2 at 0x14000150b: file IntegratedCallbacksExample.cpp, line 16.
+[New Thread 12800.0x5410]
+[New Thread 12800.0x1b94]
+[New Thread 12800.0x5834]
+Variable was successfully changed
+Thread 1 hit Breakpoint 1, main () at IntegratedCallbacksExample.cpp:11
+ 9 |    }                                 -------------------
+ 10|    int g= -1;                        |arr = {3, 3, 69}|
+>11|    int h= arr[g];                    |g = 2|
+ 12|    for(int i=0;i<2;i++){             |h = 15210760|
+ 13|        cout<<arr[i]<<endl;           -------------------
+(gdb) 
+Continuing.
+3
+3
+69
+Thread 1 hit Breakpoint 2, main () at IntegratedCallbacksExample.cpp:16

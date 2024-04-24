@@ -1,0 +1,7 @@
+Reading symbols from C:\Users\ThinkPad\Desktop\gdbDriver\src\main\java\examples\cppFiles\BreakPointExample.exe...
+Breakpoint 1 at 0x140001493: file BreakPointExample.cpp, line 9.
+[New Thread 1300.0x5adc]
+[New Thread 1300.0x1964]
+[New Thread 1300.0x4738]
+BreakPoint was executed
+Thread 1 hit Breakpoint 1, main () at BreakPointExample.cpp:9

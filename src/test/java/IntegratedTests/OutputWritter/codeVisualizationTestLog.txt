@@ -1,0 +1,5 @@
+ 4|
+ 5|    int arr[3];
+>6|    for(int i=0;i<3;i++){
+ 7|        cin>>arr[i];
+ 8|    }
