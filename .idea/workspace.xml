@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="Initial commit">
+    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="add Runnable callback">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/CommandExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStreamHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStreamHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/BreakPointExecutionTestLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/BreakPointExecutionTestLog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/examples/BreakPointExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/BreakPointExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/examples/IntegratedCallbackExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/IntegratedCallbackExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/examples/OutputConfigurationExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/OutputConfigurationExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/BreakPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/BreakPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/DebuggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/DebuggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Output/OutputInformationWritter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Output/OutputInformationWritter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,20 @@
       <recent name="examples" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CallBackExecutionTests">
+  <component name="RunManager" selected="Application.BreakPointExample">
+    <configuration name="BreakPointExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="examples.BreakPointExample" />
+      <module name="gdbDriver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="examples.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Runner" />
       <module name="gdbDriver" />
@@ -111,28 +123,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OutputWritterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gdbDriver" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="IntegratedTests.OutputWritter.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="IntegratedTests.OutputWritter" />
-      <option name="MAIN_CLASS_NAME" value="IntegratedTests.OutputWritter.OutputWritterTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BreakPointExample" />
         <item itemvalue="JUnit.CallBackExecutionTests" />
         <item itemvalue="Application.Runner" />
         <item itemvalue="JUnit.CallBackExecutionTests.basicBreakPointExecutionTest" />
         <item itemvalue="JUnit.IntegratedTests in gdbDriver" />
-        <item itemvalue="JUnit.OutputWritterTest" />
       </list>
     </recent_temporary>
   </component>
@@ -153,12 +150,31 @@
       <option name="project" value="LOCAL" />
       <updated>1713940294964</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixing a Bug with InputStreamReader dublication">
+      <option name="closed" value="true" />
+      <created>1713941754941</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713941754941</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Cleared Runner client class">
+      <option name="closed" value="true" />
+      <created>1713943901364</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713943901364</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Fixing a Bug with InputStreamReader dublication" />
+    <MESSAGE value="Cleared Runner client class" />
+    <MESSAGE value="add Runnable callback" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Runnable callback" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -179,11 +195,6 @@
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStreamHandler.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/Output/OutputInformationWritter.java</url>
           <line>55</line>
           <option name="timeStamp" value="46" />
@@ -192,6 +203,15 @@
           <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/CommandExecutor.java</url>
           <line>54</line>
           <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStreamHandler.java</url>
+          <line>85</line>
+          <properties class="gdbDriver.StreamHandlers.OutputStreamHandler" method="executeCommandLoop">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

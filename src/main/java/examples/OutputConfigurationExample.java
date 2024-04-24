@@ -15,12 +15,12 @@ public class OutputConfigurationExample {
 
         BreakPoint testBreakPoint = new BreakPoint("OutputConfigurationExample.cpp",7);
         testBreakPoint.addCallback((OutputConfig outputConfig) -> {
-            System.out.println("Main Thread hit the user's breakpoint");
+            outputConfig.writeLine("Main Thread hit the user's breakpoint");
         });
 
         debuggerConfig.addBreakPoint(testBreakPoint);
 
-        OutputConfig outputConfig = new OutputConfig(false,1);
+        OutputConfig outputConfig = new OutputConfig(true,3,true);
         Driver driver = new Driver(debuggerConfig,outputConfig);
 
         driver.load(sourceFile);

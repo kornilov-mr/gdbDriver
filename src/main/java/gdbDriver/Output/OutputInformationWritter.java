@@ -26,14 +26,14 @@ public class OutputInformationWritter {
     }
     public void writePreviousCodeWithShift(int rowShift){
         if(codeOutputInformation!=null){
-            write(codeOutputInformation,rowShift);
+            write(codeOutputInformation,rowShift,true);
         }
     }
     //For testing
     public void writeInfo(OutputInformation outputInformation, int rowShift){
         //Casts outputInformation into fitting class
         if(outputInformation instanceof CodeOutputInformation){
-            write((CodeOutputInformation) outputInformation, rowShift);
+            write((CodeOutputInformation) outputInformation, rowShift,false);
         }else if(outputInformation instanceof  GeneralOutputInformation){
             write((GeneralOutputInformation) outputInformation);
         }
@@ -41,7 +41,7 @@ public class OutputInformationWritter {
     public void writeInfo(OutputInformation outputInformation){
         //Casts outputInformation into fitting class
         if(outputInformation instanceof CodeOutputInformation){
-            write((CodeOutputInformation) outputInformation, 0);
+            write((CodeOutputInformation) outputInformation, 0, false);
         }else if(outputInformation instanceof  GeneralOutputInformation){
             write((GeneralOutputInformation) outputInformation);
         }
@@ -51,7 +51,7 @@ public class OutputInformationWritter {
             outputConfig.writeLine(generalOutputInformation.line);
         }
     }
-    private void write(CodeOutputInformation codeOutputInformation, int rowShift) {
+    private void write(CodeOutputInformation codeOutputInformation, int rowShift, boolean skipGDBSymbol) {
         //Saving last code line for further shift if there is a need for that
         this.codeOutputInformation=codeOutputInformation;
         //Reading file from location to get Adjacent lines
@@ -61,7 +61,9 @@ public class OutputInformationWritter {
         //Adding local variables to output
         if (outputConfig.isInfoLocal()) {
             //going to new sdb command so "(gdb )" won't be shown in main output
-            commandExecutor.skipToNextGDB();
+            if(!skipGDBSymbol){
+                commandExecutor.skipToNextGDB();
+            }
             //Getting values of local variable form gdb
             Vector<String> infoLocals = commandExecutor.getLocalInfo();
             //Joining local variable to the left of code lines

@@ -16,7 +16,7 @@ public class BreakPointExample {
 
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
-        BreakPoint testBreakPoint = new BreakPoint("BreakPointExample.cpp",7);
+        BreakPoint testBreakPoint = new BreakPoint("BreakPointExample.cpp",6);
         testBreakPoint.addCallback((OutputConfig outputConfig) -> {
             System.out.println("Main Thread hit the user's breakpoint");
         });

@@ -17,7 +17,7 @@ public class IntegratedCallbackExample {
 
         BreakPoint breakPoint = new BreakPoint("IntegratedCallbacksExample.cpp", 11);
         breakPoint.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueue) -> {
-            System.out.println("Variable was successfully changed");
+            outputConfig.writeLine("Variable was successfully changed");
             userCommandQueue.add("set variable g=1" + "\n");
             userCommandQueue.add("continue" + "\n");
         });

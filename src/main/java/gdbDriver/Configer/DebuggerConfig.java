@@ -20,6 +20,9 @@ public class DebuggerConfig {
         this.catcher=catcher;
     }
 
+    public DebuggerConfig(){
+        this.DebuggerToolPath="gdb";
+    }
     public DebuggerConfig(String DebuggerToolPath){
         this.DebuggerToolPath=DebuggerToolPath;
     }

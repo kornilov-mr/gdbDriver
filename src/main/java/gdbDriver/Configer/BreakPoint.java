@@ -11,6 +11,7 @@ public class BreakPoint {
 
     protected int row;
     protected String fileName;
+    private final Vector<Runnable> elementaryCallbacks= new Vector<>();
     private final Vector<SimpleCallBackInterface> simpleCallbacks = new Vector<>();
 
     private final Vector<IntegratedCallBackInterface> integratedCallbacks = new Vector<>();
@@ -19,6 +20,10 @@ public class BreakPoint {
         this.row = row;
         this.fileName=fileName;
     }
+    public void addCallback(Runnable callback){
+        elementaryCallbacks.add(callback);
+    }
+
     public void addCallback(IntegratedCallBackInterface callback){
         integratedCallbacks.add(callback);
     }
@@ -29,6 +34,9 @@ public class BreakPoint {
         return "break " + row;
     }
     public void executeCallbacks(OutputConfig outputConfig, Queue<String> userCommandQueue){
+        for(Runnable callback : elementaryCallbacks){
+            callback.run();
+        }
         for(SimpleCallBackInterface callback : simpleCallbacks){
             callback.run(outputConfig);
         }
