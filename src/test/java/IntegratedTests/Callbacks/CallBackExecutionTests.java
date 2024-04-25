@@ -1,7 +1,7 @@
 package IntegratedTests.Callbacks;
 
 import gdbDriver.Configer.BreakPoint;
-import gdbDriver.Configer.Catcher;
+import gdbDriver.Configer.ErrorCatcher;
 import gdbDriver.Configer.DebuggerConfig;
 import gdbDriver.Core.Driver;
 import gdbDriver.Output.OutputConfig;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.Objects;
-import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class CallBackExecutionTests {
     private boolean CheckIfLogFileContains(File logFile,String neededString){
@@ -45,7 +45,7 @@ public class CallBackExecutionTests {
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
         BreakPoint testBreakPoint = new BreakPoint("BreakPointExample.cpp",9);
-        testBreakPoint.addCallback((OutputConfig outputConfig,Queue<String> userCommandQueue) -> {
+        testBreakPoint.addCallback((OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) -> {
             outputConfig.writeLine("BreakPoint was executed");
             userCommandQueue.add("exit"+"\n");
         });
@@ -80,8 +80,8 @@ public class CallBackExecutionTests {
 
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
-        Catcher catcher = new Catcher();
-        catcher.addCallback((OutputConfig outputConfig,Queue<String> userCommandQueue) ->{
+        ErrorCatcher catcher = new ErrorCatcher();
+        catcher.addCallback((OutputConfig outputConfig,ConcurrentLinkedQueue<String> userCommandQueue) ->{
             outputConfig.writeLine("Cather was executed");
             userCommandQueue.add("exit"+"\n");
         });
@@ -117,7 +117,7 @@ public class CallBackExecutionTests {
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
         BreakPoint breakPoint = new BreakPoint("IntegratedCallbacksExample.cpp", 11);
-        breakPoint.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueue) -> {
+        breakPoint.addCallback((OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) -> {
             outputConfig.writeLine("Variable was successfully changed");
             userCommandQueue.add("set variable g=2" + "\n");
             userCommandQueue.add("continue\n");
@@ -125,7 +125,7 @@ public class CallBackExecutionTests {
         debuggerConfig.addBreakPoint(breakPoint);
 
         BreakPoint breakPoint2 = new BreakPoint("IntegratedCallbacksExample.cpp", 16);
-        breakPoint2.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueue) -> {
+        breakPoint2.addCallback((OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) -> {
             userCommandQueue.add("exit\n");
         });
         debuggerConfig.addBreakPoint(breakPoint2);

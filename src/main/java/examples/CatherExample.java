@@ -1,7 +1,7 @@
 package examples;
 
-import gdbDriver.Configer.Catcher;
 import gdbDriver.Configer.DebuggerConfig;
+import gdbDriver.Configer.ErrorCatcher;
 import gdbDriver.Core.Driver;
 import gdbDriver.Output.OutputConfig;
 
@@ -14,7 +14,7 @@ public class CatherExample {
 
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
-        Catcher catcher = new Catcher();
+        ErrorCatcher catcher = new ErrorCatcher();
         debuggerConfig.setCatcher(catcher);
 
         Driver driver = new Driver(debuggerConfig,new OutputConfig());

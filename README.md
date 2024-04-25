@@ -20,7 +20,7 @@ Driver driver = new Driver(new debuggerConfig(), new OutputConfig());
 driver.load(sourceFile);      //cpp or c file, what you want to debug.
 driver.run();
 ```
-With empty configs it will just run the code normaly without catcher or any breakpoints
+With empty configs it will just run the code normaly without errorCatcher or any breakpoints
 
 <br/>
 
@@ -50,7 +50,7 @@ BreakPoint breakPoint = new BreakPoint("example.cpp", 11);
 
 **Catcher:**
 ```java
-Catcher catcher = new Catcher();
+Catcher errorCatcher = new Catcher();
 ```
 
 <br/>
@@ -88,7 +88,7 @@ breakPoint.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueu
 
 **DebuggerConfig:**
 
-Configures breakpoint and catcher and their callbacks, takes a path to debugger tool or PATH variable
+Configures breakpoint and errorCatcher and their callbacks, takes a path to debugger tool or PATH variable
 ```java
 DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");. // Other degugger than gdb are not implemented
 ```
@@ -100,7 +100,7 @@ debuggerConfig.addBreakPoint(breakPoint);
 
 Funciton to set up a Catcher
 ```java
-debuggerConfig.setCatcher(catcher);
+debuggerConfig.setCatcher(errorCatcher);
 ```
 
 <br/>

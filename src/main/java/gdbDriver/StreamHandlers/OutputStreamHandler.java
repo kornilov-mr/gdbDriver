@@ -8,8 +8,7 @@ import gdbDriver.Output.OutputInformation.OutputInformation;
 import gdbDriver.Output.OutputInformationWritter;
 
 import java.io.*;
-import java.util.Objects;
-import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class OutputStreamHandler extends Thread {
 
@@ -21,7 +20,7 @@ public class OutputStreamHandler extends Thread {
     private final CommandExecutor commandExecutor;
 
     //Queue for user's commands
-    protected Queue<String> UserCommandQueue;
+    protected ConcurrentLinkedQueue<String> userCommandQueue;
 
     //Object for Writing all line from gdb and preforming code visualization and other output configs
     private final OutputInformationWritter outputInformationWritter;
@@ -35,12 +34,12 @@ public class OutputStreamHandler extends Thread {
     public OutputStreamHandler(InputStreamReader inputStreamReader, OutputStream outputStream,
                                DebuggerConfig debuggerConfig, OutputConfig outputConfig,
                                String directory,
-                               Queue<String> UserCommandQueue,
+                               ConcurrentLinkedQueue<String> userCommandQueue,
                                ThreadManager threadManager) {
 
 
         this.debuggerConfig = debuggerConfig;
-        this.UserCommandQueue = UserCommandQueue;
+        this.userCommandQueue = userCommandQueue;
 
         this.commandExecutor = new CommandExecutor(outputStream, inputStreamReader);
 
@@ -69,7 +68,7 @@ public class OutputStreamHandler extends Thread {
             //Printing information
             outputInformationWritter.writeInfo(outputInformation);
 
-            //Executing next commands in UserCommandQueue
+            //Executing next commands in userCommandQueue
             boolean stopThread = executeCommandLoop();
 
             //Checking if we hit exit command to stop all Threads
@@ -81,8 +80,8 @@ public class OutputStreamHandler extends Thread {
     }
     private boolean executeCommandLoop(){
         //Searching for every command, what isn't implemented in gdb, but affects code visualization
-        while(Commands.allCommands.contains(UserCommandQueue.peek())){
-            String nextCommands = UserCommandQueue.poll();
+        while(Commands.allCommands.contains(userCommandQueue.peek())){
+            String nextCommands = userCommandQueue.poll();
             if(Commands.upCommands.contains(nextCommands)) {
                 rowShift-=1;
             }else if(Commands.downCommands.contains(nextCommands)){
@@ -93,14 +92,14 @@ public class OutputStreamHandler extends Thread {
             outputInformationWritter.writePreviousCodeWithShift(rowShift);
         }
         //Sending next command into gdb
-        return commandExecutor.executeUserCommand(UserCommandQueue);
+        return commandExecutor.executeUserCommand(userCommandQueue);
     }
 
     private String tryToGetLocation(String newLine) {
         //Getting location if gdb hit exception
         if(newLine.contains("exception")){
             //Executing all callbacks, which have this location
-            debuggerConfig.catcher.executeCallbacks(outputConfig,UserCommandQueue);
+            debuggerConfig.errorCatcher.executeCallbacks(outputConfig,userCommandQueue);
             String line = commandExecutor.readNextLine();
             return getLocationFromBreakPoint(line);
         }
@@ -121,7 +120,7 @@ public class OutputStreamHandler extends Thread {
     }
 
     private void ExecuteCallbacksForBreakPoint(String location) {
-        this.debuggerConfig.BreakPoints.get(location).executeCallbacks(outputConfig,UserCommandQueue);
+        this.debuggerConfig.BreakPoints.get(location).executeCallbacks(outputConfig,userCommandQueue);
     }
 
 

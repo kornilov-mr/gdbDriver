@@ -6,6 +6,7 @@ import gdbDriver.Output.OutputConfig;
 
 import java.util.Queue;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class BreakPoint {
 
@@ -36,7 +37,7 @@ public class BreakPoint {
         return "break " + row;
     }
 
-    public void executeCallbacks(OutputConfig outputConfig, Queue<String> userCommandQueue) {
+    public void executeCallbacks(OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) {
         for (Runnable callback : elementaryCallbacks) {
             callback.run();
         }

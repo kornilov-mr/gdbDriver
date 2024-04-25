@@ -7,6 +7,7 @@ import gdbDriver.Output.OutputConfig;
 
 import java.io.File;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class IntegratedCallbackExample {
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class IntegratedCallbackExample {
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
         BreakPoint breakPoint = new BreakPoint("IntegratedCallbacksExample.cpp", 11);
-        breakPoint.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueue) -> {
+        breakPoint.addCallback((OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) -> {
             outputConfig.writeLine("Variable was successfully changed");
             userCommandQueue.add("set variable g=1" + "\n");
             userCommandQueue.add("continue" + "\n");

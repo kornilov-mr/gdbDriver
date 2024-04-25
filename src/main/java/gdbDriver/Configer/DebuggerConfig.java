@@ -9,14 +9,14 @@ import java.util.Map;
 public class DebuggerConfig {
     protected String DebuggerToolPath;
     public Map<String, BreakPoint> BreakPoints = new HashMap<>();
-    public Catcher catcher;
+    public ErrorCatcher errorCatcher = new ErrorCatcher();
 
     public void addBreakPoint(BreakPoint breakPoint) {
         BreakPoints.put(breakPoint.fileName + ":" + breakPoint.row, breakPoint);
     }
 
-    public void setCatcher(Catcher catcher) {
-        this.catcher = catcher;
+    public void setCatcher(ErrorCatcher errorCatcher) {
+        this.errorCatcher = errorCatcher;
     }
 
     public DebuggerConfig() {
@@ -41,8 +41,8 @@ public class DebuggerConfig {
             for (BreakPoint breakPoint : BreakPoints.values()) {
                 myWriter.write(breakPoint.createBreakCommand() + "\n");
             }
-            if (catcher != null) {
-                myWriter.write(catcher.createCatchCommand() + "\n");
+            if (errorCatcher != null) {
+                myWriter.write(errorCatcher.createCatchCommand() + "\n");
             }
             myWriter.write("run");
             myWriter.close();

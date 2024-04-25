@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static java.lang.Thread.sleep;
 
@@ -39,13 +40,13 @@ public class CommandExecutor {
         }
     }
 
-    public boolean executeUserCommand(Queue<String> UserCommandQueue) {
-        if (UserCommandQueue.isEmpty()) {
+    public boolean executeUserCommand(ConcurrentLinkedQueue<String> userCommandQueue) {
+        if (userCommandQueue.isEmpty()) {
             return false;
         }
         //Sending command into gdb
         PrintWriter printWriter = new PrintWriter(outputStream);
-        String currCommand = UserCommandQueue.poll();
+        String currCommand = userCommandQueue.poll();
         printWriter.write(currCommand);
         printWriter.flush();
         //Checking if we hit exit to then close Threads

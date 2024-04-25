@@ -9,9 +9,7 @@ import gdbDriver.StreamHandlers.ThreadManager;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 public class Driver {
@@ -20,7 +18,7 @@ public class Driver {
     private final OutputConfig outputConfig;
 
     //Object for user's input
-    private final Queue<String> UserCommandQueue = new LinkedList<>();
+    private final ConcurrentLinkedQueue<String> userCommandQueue = new ConcurrentLinkedQueue<>();
 
     private File sourceFile;
     private File executableFile;
@@ -59,7 +57,7 @@ public class Driver {
         errorStreamWriter.start();
 
         //Starting thread, what is responsible for reading input in System.in
-        SystemInListener systemInListener = new SystemInListener(UserCommandQueue);
+        SystemInListener systemInListener = new SystemInListener(userCommandQueue);
         systemInListener.start();
 
         threadManager = new ThreadManager(errorStreamWriter, systemInListener, process);
@@ -72,7 +70,7 @@ public class Driver {
                 debuggerConfig,
                 outputConfig,
                 directory,
-                UserCommandQueue,
+                userCommandQueue,
                 threadManager);
 
         outputStreamHandler.start();
