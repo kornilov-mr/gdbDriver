@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="fixed the Bug with skipping (gdb) symbol where it's not necessary">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/CodeCompiler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/SystemParameters.java" afterDir="false" />
+    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="deleted unnecessary mutable fields.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/examples/BreakPointExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/BreakPointExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/examples/CatherExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/CatherExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/examples/IntegratedCallbackExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/IntegratedCallbackExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/examples/OutputConfigurationExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/OutputConfigurationExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Output/OutputConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Output/OutputConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/ErrorStreamWritter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/ErrorStreamWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/SystemInListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/SystemInListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +26,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -177,7 +175,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713949710347</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added CodeCompiler class">
+      <option name="closed" value="true" />
+      <created>1714030046145</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714030046145</updated>
+    </task>
+    <task id="LOCAL-00006" summary="deleted unnecessary mutable fields.">
+      <option name="closed" value="true" />
+      <created>1714030741400</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714030741400</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -186,14 +200,16 @@
     <MESSAGE value="Cleared Runner client class" />
     <MESSAGE value="add Runnable callback" />
     <MESSAGE value="fixed the Bug with skipping (gdb) symbol where it's not necessary" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the Bug with skipping (gdb) symbol where it's not necessary" />
+    <MESSAGE value="added CodeCompiler class" />
+    <MESSAGE value="deleted unnecessary mutable fields." />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted unnecessary mutable fields." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStreamHandler.java</url>
-          <line>126</line>
+          <line>122</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -218,7 +234,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStreamHandler.java</url>
-          <line>85</line>
+          <line>81</line>
           <properties class="gdbDriver.StreamHandlers.OutputStreamHandler" method="executeCommandLoop">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

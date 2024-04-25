@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class SystemInListener extends Thread {
 
-    private Queue<String> UserCommandQueue;
+    private final Queue<String> UserCommandQueue;
 
     public SystemInListener(Queue<String> UserCommandQueue) {
         this.UserCommandQueue = UserCommandQueue;

@@ -68,4 +68,13 @@ public class OutputConfig {
             writeInLogFile.println(line);
         }
     }
+    public void writeError(String line){
+        //write in system err or/and in log file
+        if (writeInSystemOut) {
+            System.err.println(line);
+        }
+        if (writeInLogFile != null) {
+            writeInLogFile.println(line);
+        }
+    }
 }

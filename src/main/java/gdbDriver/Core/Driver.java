@@ -2,7 +2,7 @@ package gdbDriver.Core;
 
 import gdbDriver.Configer.DebuggerConfig;
 import gdbDriver.Output.OutputConfig;
-import gdbDriver.StreamHandlers.ErrorStreamWritter;
+import gdbDriver.StreamHandlers.ErrorStreamWriter;
 import gdbDriver.StreamHandlers.SystemInListener;
 import gdbDriver.StreamHandlers.OutputStreamHandler;
 import gdbDriver.StreamHandlers.ThreadManager;
@@ -55,14 +55,14 @@ public class Driver {
         InputStream errorStream = process.getErrorStream();
 
         //Starting thread, what is responsible for dealing with error stream
-        ErrorStreamWritter errorStreamWritter = new ErrorStreamWritter(errorStream);
-        errorStreamWritter.start();
+        ErrorStreamWriter errorStreamWriter = new ErrorStreamWriter(errorStream, outputConfig);
+        errorStreamWriter.start();
 
         //Starting thread, what is responsible for reading input in System.in
         SystemInListener systemInListener = new SystemInListener(UserCommandQueue);
         systemInListener.start();
 
-        threadManager = new ThreadManager(errorStreamWritter, systemInListener, process);
+        threadManager = new ThreadManager(errorStreamWriter, systemInListener, process);
 
         //Starting thread, what is responsible for general output from gdb and preforms all code visualization
         //and applying other output configs

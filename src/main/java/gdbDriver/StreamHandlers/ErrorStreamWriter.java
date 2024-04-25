@@ -1,15 +1,20 @@
 package gdbDriver.StreamHandlers;
 
+import gdbDriver.Output.OutputConfig;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class ErrorStreamWritter extends Thread{
-    private InputStream io;
-    public ErrorStreamWritter(InputStream io) {
+public class ErrorStreamWriter extends Thread{
+    private final InputStream io;
+    private final OutputConfig outputConfig;
+
+    public ErrorStreamWriter(InputStream io, OutputConfig outputConfig) {
         this.io = io;
+        this.outputConfig = outputConfig;
     }
 
     public void run() {
@@ -25,7 +30,7 @@ public class ErrorStreamWritter extends Thread{
                     if (Objects.equals(newLine, null)) {
                         break;
                     }
-                    System.out.println(newLine);
+                    outputConfig.writeError(newLine);
 
             }
         } catch (IOException e) {
