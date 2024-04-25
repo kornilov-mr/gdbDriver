@@ -18,13 +18,14 @@ public class CommandExecutor {
         this.outputStream = outputStream;
         this.inputStreamReader = inputStreamReader;
     }
+
     //For Testing
     public CommandExecutor(InputStreamReader in, PrintStream out) {
         this.outputStream = out;
         this.inputStreamReader = in;
     }
 
-    public void skipToNextGDB(){
+    public void skipToNextGDB() {
         try {
             sleep(50);
         } catch (InterruptedException e) {
@@ -37,9 +38,10 @@ public class CommandExecutor {
             }
         }
     }
+
     public boolean executeUserCommand(Queue<String> UserCommandQueue) {
         if (UserCommandQueue.isEmpty()) {
-              return false;
+            return false;
         }
         //Sending command into gdb
         PrintWriter printWriter = new PrintWriter(outputStream);
@@ -50,24 +52,24 @@ public class CommandExecutor {
         return Objects.equals(currCommand, "exit\n");
     }
 
-    public Vector<String> getLocalInfo(){
+    public Vector<String> getLocalInfo() {
         //Sending command to gdb
         PrintWriter printWriter = new PrintWriter(outputStream);
         printWriter.write("info locals" + "\n");
         printWriter.flush();
-        Vector<String> localInfo=new Vector<>();
+        Vector<String> localInfo = new Vector<>();
         while (true) {
             //Reading output before we hit (gdb)
             String newLine = readNextLine();
             if (Objects.equals(newLine, "(gdb) ")) {
                 break;
             }
-            if(!Objects.equals(newLine,"")){
+            if (!Objects.equals(newLine, "")) {
                 localInfo.add(newLine);
             }
         }
 
-        printWriter.write("skipToNewCommand" +"\n");
+        printWriter.write("skipToNewCommand" + "\n");
         printWriter.flush();
         return localInfo;
     }

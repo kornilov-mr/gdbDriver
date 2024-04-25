@@ -12,13 +12,15 @@ public class ThreadManager {
         this.userInput = userInput;
         this.GDBprocess = gdBprocess;
     }
-    public void stopAllThreads(){
-        alive=false;
+
+    public void stopAllThreads() {
+        alive = false;
         errorOutput.interrupt();
         userInput.interrupt();
         GDBprocess.destroy();
     }
-    public boolean isAlive(){
+
+    public boolean isAlive() {
         return alive;
     }
 }

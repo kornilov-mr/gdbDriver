@@ -101,6 +101,7 @@ public class Driver {
     private String createGDBExecuteString(File CommandFile) {
         return debuggerConfig.createTerminalCommand() + " " + executableFile.getAbsolutePath() + " --command=" + CommandFile.getAbsolutePath() + " -q";
     }
+
     public boolean isAlive(){
         return threadManager.isAlive();
     }

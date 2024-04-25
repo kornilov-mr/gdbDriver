@@ -16,7 +16,7 @@ public class OutputConfig {
     private PrintStream writeInLogFile;
 
     public void setLogFile(File logFile) {
-        if(logFile.exists()){
+        if (logFile.exists()) {
             logFile.delete();
         }
         try {
@@ -52,7 +52,8 @@ public class OutputConfig {
         this.adjacentRowShow = adjacentRowShow;
         this.writeInSystemOut = writeInSystemOut;
     }
-    public OutputConfig( boolean writeInSystemOut) {
+
+    public OutputConfig(boolean writeInSystemOut) {
         this.writeInSystemOut = writeInSystemOut;
     }
 
@@ -68,7 +69,8 @@ public class OutputConfig {
             writeInLogFile.println(line);
         }
     }
-    public void writeError(String line){
+
+    public void writeError(String line) {
         //write in system err or/and in log file
         if (writeInSystemOut) {
             System.err.println(line);

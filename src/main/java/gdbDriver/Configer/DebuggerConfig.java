@@ -8,29 +8,30 @@ import java.util.Map;
 
 public class DebuggerConfig {
     protected String DebuggerToolPath;
-
-    public Map<String,BreakPoint> BreakPoints = new HashMap<>();
+    public Map<String, BreakPoint> BreakPoints = new HashMap<>();
     public Catcher catcher;
 
-    public void addBreakPoint(BreakPoint breakPoint){
-        BreakPoints.put(breakPoint.fileName+":"+breakPoint.row, breakPoint);
+    public void addBreakPoint(BreakPoint breakPoint) {
+        BreakPoints.put(breakPoint.fileName + ":" + breakPoint.row, breakPoint);
     }
 
-    public void setCatcher(Catcher catcher){
-        this.catcher=catcher;
+    public void setCatcher(Catcher catcher) {
+        this.catcher = catcher;
     }
 
-    public DebuggerConfig(){
-        this.DebuggerToolPath="gdb";
+    public DebuggerConfig() {
+        this.DebuggerToolPath = "gdb";
     }
-    public DebuggerConfig(String DebuggerToolPath){
-        this.DebuggerToolPath=DebuggerToolPath;
+
+    public DebuggerConfig(String DebuggerToolPath) {
+        this.DebuggerToolPath = DebuggerToolPath;
     }
-    public String createTerminalCommand(){
+
+    public String createTerminalCommand() {
         return DebuggerToolPath;
     }
 
-    public File createPreRunCommandFile(){
+    public File createPreRunCommandFile() {
 
         File newCommandFile = new File("PreRunCommand.txt");
         try {

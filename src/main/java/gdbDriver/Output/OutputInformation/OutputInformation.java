@@ -7,7 +7,7 @@ public abstract class OutputInformation {
         this.line = line;
     }
 
-    public String getLine(){
+    public String getLine() {
         return line;
     }
 }

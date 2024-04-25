@@ -17,43 +17,48 @@ public class OutputInformationWritter {
     private final OutputConfig outputConfig;
     private final CommandExecutor commandExecutor;
     private final String directory;
-    private CodeOutputInformation codeOutputInformation=null;
+    private CodeOutputInformation codeOutputInformation = null;
 
     public OutputInformationWritter(OutputConfig outputConfig, CommandExecutor commandExecutor, String directory) {
         this.outputConfig = outputConfig;
         this.commandExecutor = commandExecutor;
         this.directory = directory;
     }
-    public void writePreviousCodeWithShift(int rowShift){
-        if(codeOutputInformation!=null){
-            write(codeOutputInformation,rowShift,true);
+
+    public void writePreviousCodeWithShift(int rowShift) {
+        if (codeOutputInformation != null) {
+            write(codeOutputInformation, rowShift, true);
         }
     }
+
     //For testing
-    public void writeInfo(OutputInformation outputInformation, int rowShift){
+    public void writeInfo(OutputInformation outputInformation, int rowShift) {
         //Casts outputInformation into fitting class
-        if(outputInformation instanceof CodeOutputInformation){
-            write((CodeOutputInformation) outputInformation, rowShift,false);
-        }else if(outputInformation instanceof  GeneralOutputInformation){
+        if (outputInformation instanceof CodeOutputInformation) {
+            write((CodeOutputInformation) outputInformation, rowShift, false);
+        } else if (outputInformation instanceof GeneralOutputInformation) {
             write((GeneralOutputInformation) outputInformation);
         }
     }
-    public void writeInfo(OutputInformation outputInformation){
+
+    public void writeInfo(OutputInformation outputInformation) {
         //Casts outputInformation into fitting class
-        if(outputInformation instanceof CodeOutputInformation){
+        if (outputInformation instanceof CodeOutputInformation) {
             write((CodeOutputInformation) outputInformation, 0, false);
-        }else if(outputInformation instanceof  GeneralOutputInformation){
+        } else if (outputInformation instanceof GeneralOutputInformation) {
             write((GeneralOutputInformation) outputInformation);
         }
     }
-    private void write(GeneralOutputInformation generalOutputInformation){
-        if(!Objects.equals(generalOutputInformation.getLine(),"")){
+
+    private void write(GeneralOutputInformation generalOutputInformation) {
+        if (!Objects.equals(generalOutputInformation.getLine(), "")) {
             outputConfig.writeLine(generalOutputInformation.getLine());
         }
     }
+
     private void write(CodeOutputInformation codeOutputInformation, int rowShift, boolean skipGDBSymbol) {
         //Saving last code line for further shift if there is a need for that
-        this.codeOutputInformation=codeOutputInformation;
+        this.codeOutputInformation = codeOutputInformation;
         //Reading file from location to get Adjacent lines
         Vector<StringBuilder> codeLines = getAdjacentLine(codeOutputInformation.getLocation(),
                 codeOutputInformation.getRow(),
@@ -61,7 +66,7 @@ public class OutputInformationWritter {
         //Adding local variables to output
         if (outputConfig.isInfoLocal()) {
             //going to new sdb command so "(gdb )" won't be shown in main output
-            if(!skipGDBSymbol){
+            if (!skipGDBSymbol) {
                 commandExecutor.skipToNextGDB();
             }
             //Getting values of local variable form gdb
@@ -89,8 +94,8 @@ public class OutputInformationWritter {
         pathToFile = pathToFile.resolve(fileName);
 
 
-        int start_row = Math.max(row - outputConfig.getAdjacentRowShow()+rowShift, 1);
-        int end_row = row + outputConfig.getAdjacentRowShow() + 1+rowShift;
+        int start_row = Math.max(row - outputConfig.getAdjacentRowShow() + rowShift, 1);
+        int end_row = row + outputConfig.getAdjacentRowShow() + 1 + rowShift;
 
         //String of code line, we are current at
         String currentLineString = null;
@@ -103,8 +108,8 @@ public class OutputInformationWritter {
             //Reading previous strings
             for (int i = 1; i < start_row; i++) {
                 String line = bufferedReader.readLine();
-                if(i==row){
-                    currentLineString=line;
+                if (i == row) {
+                    currentLineString = line;
                 }
             }
 
@@ -115,16 +120,16 @@ public class OutputInformationWritter {
                     break;
                 }
                 //Creating line count padding
-                StringBuilder sb = getLineCounts(i,row,maxDigitCount);
+                StringBuilder sb = getLineCounts(i, row, maxDigitCount);
                 sb.append(line);
                 strings.add(sb);
             }
 
             //Reading rest line until we hit current line we are at
-            for(int i=end_row;i<=row;i++){
+            for (int i = end_row; i <= row; i++) {
                 String line = bufferedReader.readLine();
-                if(i==row){
-                    currentLineString=line;
+                if (i == row) {
+                    currentLineString = line;
                 }
             }
 
@@ -133,24 +138,24 @@ public class OutputInformationWritter {
             throw new RuntimeException(e);
         }
         //If line we are at isn't in range from start_row to end_row
-        if(currentLineString==null){
+        if (currentLineString == null) {
             return strings;
         }
 
         //Creating line count padding
-        StringBuilder sbCode = getLineCounts(row,row,maxDigitCount);
+        StringBuilder sbCode = getLineCounts(row, row, maxDigitCount);
         sbCode.append(currentLineString);
         StringBuilder sbDelimiterLine = new StringBuilder();
         //Creating delimiter to separate current line from other lines
         sbDelimiterLine.append("##################################");
 
 
-        if(start_row>row){
+        if (start_row > row) {
             //add to the start if current line is above shown lines
-            strings.insertElementAt(sbDelimiterLine,0);
-            strings.insertElementAt(sbCode,0);
+            strings.insertElementAt(sbDelimiterLine, 0);
+            strings.insertElementAt(sbCode, 0);
         }
-        if(end_row<=row){
+        if (end_row <= row) {
             //add to the end if current line is below shown lines
             strings.add(sbDelimiterLine);
             strings.add(sbCode);
@@ -158,7 +163,8 @@ public class OutputInformationWritter {
         return strings;
 
     }
-    private StringBuilder getLineCounts(int i, int row, int maxDigitCount){
+
+    private StringBuilder getLineCounts(int i, int row, int maxDigitCount) {
         StringBuilder stringBuilder = new StringBuilder();
         if (i == row) {
             stringBuilder.append(">");
@@ -169,8 +175,9 @@ public class OutputInformationWritter {
         stringBuilder.append(i);
         appendStringBuilderToCertainLength(stringBuilder, maxDigitCount, ' ');
         stringBuilder.append("|");
-        return  stringBuilder;
+        return stringBuilder;
     }
+
     private Vector<StringBuilder> appendInfoLocal(Vector<StringBuilder> codeLines, Vector<String> infoLocals) {
         //Getting max width of code lines to apply padding
         int maxLineLength = 0;
