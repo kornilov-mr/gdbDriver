@@ -2,9 +2,8 @@ package examples;
 
 
 import gdbDriver.Configer.BreakPoint;
-import gdbDriver.Configer.Catcher;
 import gdbDriver.Configer.DebuggerConfig;
-import gdbDriver.Driver;
+import gdbDriver.Core.Driver;
 import gdbDriver.Output.OutputConfig;
 
 import java.io.File;
@@ -17,7 +16,7 @@ public class BreakPointExample {
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
         BreakPoint testBreakPoint = new BreakPoint("BreakPointExample.cpp",6);
-        testBreakPoint.addCallback((OutputConfig outputConfig) -> {
+        testBreakPoint.addCallback(() -> {
             System.out.println("Main Thread hit the user's breakpoint");
         });
 

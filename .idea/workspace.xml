@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="add Runnable callback">
+    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="fixed the Bug with skipping (gdb) symbol where it's not necessary">
+      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/CodeCompiler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/SystemParameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/examples/BreakPointExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/BreakPointExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/examples/CatherExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/CatherExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/examples/IntegratedCallbackExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/IntegratedCallbackExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/examples/OutputConfigurationExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/OutputConfigurationExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/BreakPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/BreakPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/DebuggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/DebuggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Output/OutputInformationWritter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Output/OutputInformationWritter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713943901364</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixed the Bug with skipping (gdb) symbol where it's not necessary">
+      <option name="closed" value="true" />
+      <created>1713949710347</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713949710347</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -174,7 +185,8 @@
     <MESSAGE value="Fixing a Bug with InputStreamReader dublication" />
     <MESSAGE value="Cleared Runner client class" />
     <MESSAGE value="add Runnable callback" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Runnable callback" />
+    <MESSAGE value="fixed the Bug with skipping (gdb) symbol where it's not necessary" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the Bug with skipping (gdb) symbol where it's not necessary" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

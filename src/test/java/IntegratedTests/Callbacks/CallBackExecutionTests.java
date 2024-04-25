@@ -3,7 +3,7 @@ package IntegratedTests.Callbacks;
 import gdbDriver.Configer.BreakPoint;
 import gdbDriver.Configer.Catcher;
 import gdbDriver.Configer.DebuggerConfig;
-import gdbDriver.Driver;
+import gdbDriver.Core.Driver;
 import gdbDriver.Output.OutputConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

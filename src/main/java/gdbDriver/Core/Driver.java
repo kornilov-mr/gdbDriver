@@ -1,4 +1,4 @@
-package gdbDriver;
+package gdbDriver.Core;
 
 import gdbDriver.Configer.DebuggerConfig;
 import gdbDriver.Output.OutputConfig;
@@ -8,10 +8,10 @@ import gdbDriver.StreamHandlers.OutputStreamHandler;
 import gdbDriver.StreamHandlers.ThreadManager;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import static java.lang.Thread.sleep;
 
 
 public class Driver {
@@ -29,22 +29,6 @@ public class Driver {
     //Object to stop all Threads after receiving exit command
     public ThreadManager threadManager;
 
-    private static final boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    //Args for process builder, which variates to system
-    private static final String[] arg = new String[3];
-
-    static {
-        if (isWindows) {
-            //windows
-            arg[0] = "cmd.exe";
-            arg[1] = "/c";
-        } else {
-            //no support for linux
-            arg[0] = "cmd.exe";
-            arg[1] = "/c";
-        }
-    }
-
     public Driver(DebuggerConfig debuggerConfig, OutputConfig outputConfig) {
         this.debuggerConfig = debuggerConfig;
         this.outputConfig = outputConfig;
@@ -56,8 +40,12 @@ public class Driver {
     }
 
     public void run() {
-
-        compileCode();
+        if (sourceFile == null) {
+            System.out.println("source file isn't loaded");
+            return;
+        }
+        CodeCompiler codeCompiler = new CodeCompiler("-std=c++14");
+        this.executableFile = codeCompiler.compileCode(sourceFile);
 
         Process process = startProcess();
 
@@ -90,36 +78,22 @@ public class Driver {
         outputStreamHandler.start();
     }
 
-    private void compileCode() {
-        ProcessBuilder builder = new ProcessBuilder();
-        builder.directory(sourceFile.getParentFile());
-
-        arg[2] = createCompileExecuteString();
-        builder.command(arg);
-        try {
-            builder.start();
-        } catch (IOException e) {
-            System.out.println("A problem occurred during code compilation");
-            throw new RuntimeException(e);
-        }
-    }
-
     private Process startProcess() {
         File commandFile = debuggerConfig.createPreRunCommandFile();
 
-
-        String command = createGDBExecuteString(commandFile);
-
         ProcessBuilder builder = new ProcessBuilder();
         builder.directory(this.executableFile.getParentFile());
-        arg[2] = command;
-        builder.command(arg);
+
+        ArrayList<String> args = SystemParameters.getArgs();
+        args.add(createGDBExecuteString(commandFile));
+
+        builder.command(args);
 
         try {
             return builder.start();
         } catch (IOException e) {
             System.out.println("A problem occurred during starting up the gdb \n" +
-                    "with command:" + command);
+                    "with command:" + createGDBExecuteString(commandFile));
             throw new RuntimeException(e);
         }
     }
@@ -127,14 +101,5 @@ public class Driver {
     private String createGDBExecuteString(File CommandFile) {
         return debuggerConfig.createTerminalCommand() + " " + executableFile.getAbsolutePath() + " --command=" + CommandFile.getAbsolutePath() + " -q";
     }
-
-    private String createCompileExecuteString() {
-        String[] temp = sourceFile.getName().split("\\.");
-        String extension = "." + temp[temp.length - 1];
-        this.executableFile = new File(sourceFile.getAbsolutePath().replace(extension, ".exe"));
-        return "g++ -g -std=c++14 " + sourceFile.getName() + " -o " + sourceFile.getName().replace(extension, "");
-
-    }
-
 }
 

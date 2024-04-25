@@ -2,7 +2,7 @@ package examples;
 
 import gdbDriver.Configer.BreakPoint;
 import gdbDriver.Configer.DebuggerConfig;
-import gdbDriver.Driver;
+import gdbDriver.Core.Driver;
 import gdbDriver.Output.OutputConfig;
 
 import java.io.File;
