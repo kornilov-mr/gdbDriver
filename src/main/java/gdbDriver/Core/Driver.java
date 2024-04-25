@@ -27,7 +27,7 @@ public class Driver {
     private String directory;
 
     //Object to stop all Threads after receiving exit command
-    public ThreadManager threadManager;
+    private ThreadManager threadManager;
 
     public Driver(DebuggerConfig debuggerConfig, OutputConfig outputConfig) {
         this.debuggerConfig = debuggerConfig;
@@ -100,6 +100,9 @@ public class Driver {
 
     private String createGDBExecuteString(File CommandFile) {
         return debuggerConfig.createTerminalCommand() + " " + executableFile.getAbsolutePath() + " --command=" + CommandFile.getAbsolutePath() + " -q";
+    }
+    public boolean isAlive(){
+        return threadManager.isAlive();
     }
 }
 

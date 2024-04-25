@@ -5,7 +5,7 @@ public class ThreadManager {
     private final Thread errorOutput;
     private final Thread userInput;
     private final Process GDBprocess;
-    public boolean alive = true;
+    private boolean alive = true;
 
     public ThreadManager(Thread errorOutput, Thread userInput, Process gdBprocess) {
         this.errorOutput = errorOutput;
@@ -17,5 +17,8 @@ public class ThreadManager {
         errorOutput.interrupt();
         userInput.interrupt();
         GDBprocess.destroy();
+    }
+    public boolean isAlive(){
+        return alive;
     }
 }

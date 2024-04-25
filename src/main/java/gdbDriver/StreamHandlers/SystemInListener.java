@@ -9,7 +9,6 @@ public class SystemInListener extends Thread {
 
     private Queue<String> UserCommandQueue;
 
-
     public SystemInListener(Queue<String> UserCommandQueue) {
         this.UserCommandQueue = UserCommandQueue;
     }
@@ -20,10 +19,10 @@ public class SystemInListener extends Thread {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             try {
-                if(bufferedReader.ready()) {
+                if (bufferedReader.ready()) {
                     String command = bufferedReader.readLine();
                     UserCommandQueue.add(command + "\n");
-                    Thread.sleep( 100);
+                    Thread.sleep(100);
                 }
             } catch (InterruptedException e) {
                 break;

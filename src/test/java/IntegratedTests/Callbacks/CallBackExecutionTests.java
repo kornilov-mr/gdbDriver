@@ -61,7 +61,7 @@ public class CallBackExecutionTests {
         driver.run();
         while(true){
             Thread.sleep(100);
-            if(!driver.threadManager.alive){
+            if(!driver.isAlive()){
                 break;
             }
         }
@@ -96,7 +96,7 @@ public class CallBackExecutionTests {
         driver.run();
         while(true){
             Thread.sleep(100);
-            if(!driver.threadManager.alive){
+            if(!driver.isAlive()){
                 break;
             }
         }
@@ -140,7 +140,7 @@ public class CallBackExecutionTests {
         driver.run();
         while(true){
             Thread.sleep(100);
-            if(!driver.threadManager.alive){
+            if(!driver.isAlive()){
                 break;
             }
         }

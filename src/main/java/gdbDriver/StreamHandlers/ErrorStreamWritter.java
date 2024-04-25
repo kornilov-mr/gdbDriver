@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class ErrorStreamWritter extends Thread{
-    InputStream io;
+    private InputStream io;
     public ErrorStreamWritter(InputStream io) {
         this.io = io;
     }

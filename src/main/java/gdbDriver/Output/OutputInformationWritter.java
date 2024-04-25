@@ -47,16 +47,16 @@ public class OutputInformationWritter {
         }
     }
     private void write(GeneralOutputInformation generalOutputInformation){
-        if(!Objects.equals(generalOutputInformation.line,"")){
-            outputConfig.writeLine(generalOutputInformation.line);
+        if(!Objects.equals(generalOutputInformation.getLine(),"")){
+            outputConfig.writeLine(generalOutputInformation.getLine());
         }
     }
     private void write(CodeOutputInformation codeOutputInformation, int rowShift, boolean skipGDBSymbol) {
         //Saving last code line for further shift if there is a need for that
         this.codeOutputInformation=codeOutputInformation;
         //Reading file from location to get Adjacent lines
-        Vector<StringBuilder> codeLines = getAdjacentLine(codeOutputInformation.location,
-                codeOutputInformation.row,
+        Vector<StringBuilder> codeLines = getAdjacentLine(codeOutputInformation.getLocation(),
+                codeOutputInformation.getRow(),
                 rowShift);
         //Adding local variables to output
         if (outputConfig.isInfoLocal()) {

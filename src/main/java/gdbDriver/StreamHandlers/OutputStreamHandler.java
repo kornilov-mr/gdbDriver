@@ -13,9 +13,6 @@ import java.util.Queue;
 
 public class OutputStreamHandler extends Thread {
 
-    //InputStream for gdb
-    private final InputStreamReader inputStreamReader;
-
     //Configs what user Creates
     private final DebuggerConfig debuggerConfig;
     private final OutputConfig outputConfig;
@@ -41,7 +38,6 @@ public class OutputStreamHandler extends Thread {
                                Queue<String> UserCommandQueue,
                                ThreadManager threadManager) {
 
-        this.inputStreamReader = inputStreamReader;
 
         this.debuggerConfig = debuggerConfig;
         this.UserCommandQueue = UserCommandQueue;
