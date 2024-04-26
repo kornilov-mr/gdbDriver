@@ -29,10 +29,19 @@ public class OutputWriterTest {
         }
         return strings;
     }
+    private void createFileIfDoesNotExist(File sourceFile){
+        if(!sourceFile.exists()){
+            try {
+                sourceFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     @Test
     public void codeVisualizationTest() {
         File logFile = new File("src/test/java/IntegratedTests/OutputWritter/codeVisualizationTestLog.txt");
-
+        createFileIfDoesNotExist(logFile);
 
         OutputConfig outputConfig = new OutputConfig(false, 2,false);
         outputConfig.setLogFile(logFile);
@@ -67,6 +76,7 @@ public class OutputWriterTest {
     @Test
     public void codeVisualizationWithInfoLocalsTest() {
         File logFile = new File("src/test/java/IntegratedTests/OutputWritter/codeVisualizationWithInfoLocalsTestLog");
+        createFileIfDoesNotExist(logFile);
 
         String testCommands = "\n"+"i = 0\n" + "arr = {0,19}\n"+"(gdb) ";
         InputStream is = new ByteArrayInputStream(testCommands.getBytes());
@@ -107,6 +117,7 @@ public class OutputWriterTest {
     @Test
     public void codeVisualizationShiftTest() {
         File logFile = new File("src/test/java/IntegratedTests/OutputWritter/codeVisualizationShiftTestLog.txt");
+        createFileIfDoesNotExist(logFile);
 
         OutputConfig outputConfig = new OutputConfig(false, 2,false);
         outputConfig.setLogFile(logFile);

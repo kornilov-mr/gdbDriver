@@ -33,6 +33,15 @@ public class CallBackExecutionTests {
         }
         return neededStringFound;
     }
+    private void createFileIfDoesNotExist(File sourceFile){
+        if(!sourceFile.exists()){
+            try {
+                sourceFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     @Test
     public void basicBreakPointExecutionTest() throws InterruptedException {
 
@@ -41,6 +50,7 @@ public class CallBackExecutionTests {
         System.setIn(is);
 
         File sourceFile= new File("src/main/java/examples/cppFiles/BreakPointExample.cpp");
+        createFileIfDoesNotExist(sourceFile);
         File logFile= new File("src/test/java/integratedTests/Callbacks/BreakPointExecutionTestLog.txt");
 
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
@@ -77,6 +87,7 @@ public class CallBackExecutionTests {
         System.setIn(is);
 
         File sourceFile= new File("src/main/java/examples/cppFiles/CatcherExample.cpp");
+        createFileIfDoesNotExist(sourceFile);
         File logFile= new File("src/test/java/integratedTests/Callbacks/CatcherExecutionTestLog.txt");
 
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
@@ -112,6 +123,7 @@ public class CallBackExecutionTests {
         System.setIn(is);
 
         File sourceFile= new File("src/main/java/examples/cppFiles/IntegratedCallbacksExample.cpp");
+        createFileIfDoesNotExist(sourceFile);
         File logFile= new File("src/test/java/integratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt");
 
 

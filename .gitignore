@@ -39,3 +39,9 @@ build/
 /.idea/
 /PreRunCommand.txt
 /src/main/java/executableFiles/
+/src/test/java/IntegratedTests/OutputWritter/codeVisualizationShiftTestLog.txt
+/src/test/java/IntegratedTests/OutputWritter/codeVisualizationTestLog.txt
+/src/test/java/IntegratedTests/OutputWritter/codeVisualizationWithInfoLocalsTestLog
+/src/test/java/IntegratedTests/Callbacks/CatcherExecutionTestLog.txt
+/src/test/java/IntegratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt
+/src/test/java/IntegratedTests/Callbacks/BreakPointExecutionTestLog.txt
