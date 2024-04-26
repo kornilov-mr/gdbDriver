@@ -1,7 +1,5 @@
 package IntegratedTests.OutputWritter;
 
-import gdbDriver.Configer.BreakPoint;
-import gdbDriver.Configer.DebuggerConfig;
 import gdbDriver.Output.OutputConfig;
 import gdbDriver.Output.OutputInformation.CodeOutputInformation;
 import gdbDriver.Output.OutputInformation.InformationFactory;
@@ -13,11 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.Queue;
 import java.util.Vector;
 
-public class OutputWritterTest {
+public class OutputWriterTest {
     private Vector<String> readLogFile(File logFile){
         Vector<String> strings= new Vector<>();
         try {
