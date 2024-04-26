@@ -87,7 +87,7 @@ public class CallBackExecutionTests {
         });
         debuggerConfig.setCatcher(catcher);
 
-        OutputConfig outputConfig = new OutputConfig(false);
+        OutputConfig outputConfig = new OutputConfig(true);
         outputConfig.setLogFile(logFile);
 
         Driver driver = new Driver(debuggerConfig,outputConfig);
@@ -131,7 +131,7 @@ public class CallBackExecutionTests {
         debuggerConfig.addBreakPoint(breakPoint2);
 
 
-        OutputConfig outputConfig = new OutputConfig(false);
+        OutputConfig outputConfig = new OutputConfig(true);
         outputConfig.setLogFile(logFile);
 
         Driver driver = new Driver(debuggerConfig,outputConfig);

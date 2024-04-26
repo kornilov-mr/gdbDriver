@@ -2,6 +2,7 @@ package gdbDriver.Configer;
 
 import gdbDriver.CallBacks.IntegratedCallBackInterface;
 import gdbDriver.CallBacks.SimpleCallBackInterface;
+import gdbDriver.Commands.userCommands.UserCommandQueue;
 import gdbDriver.Output.OutputConfig;
 
 import java.util.Queue;
@@ -37,7 +38,7 @@ public class BreakPoint {
         return "break " + row;
     }
 
-    public void executeCallbacks(OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) {
+    public void executeCallbacks(OutputConfig outputConfig, UserCommandQueue userCommandQueue) {
         for (Runnable callback : elementaryCallbacks) {
             callback.run();
         }

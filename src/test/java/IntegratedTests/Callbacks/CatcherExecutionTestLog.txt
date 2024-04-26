@@ -1,7 +1,7 @@
-Reading symbols from C:\Users\ThinkPad\Desktop\gdbDriver\src\main\java\examples\cppFiles\CatcherExample.exe...
+Reading symbols from C:\Users\ThinkPad\Desktop\gdbDriver\src\main\java\executableFiles\CatcherExample.exe...
 Catchpoint 1 (catch)
-[New Thread 17136.0x7a4]
-[New Thread 17136.0x2e44]
-[New Thread 17136.0x3e98]
+[New Thread 18020.0x4184]
+[New Thread 18020.0x225c]
+[New Thread 18020.0x4ae4]
 Cather was executed
 Thread 1 received signal SIGFPE, Arithmetic exception.

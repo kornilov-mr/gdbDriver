@@ -3,6 +3,7 @@ package gdbDriver.Configer;
 import gdbDriver.CallBacks.ElementaryCallbacksInterface;
 import gdbDriver.CallBacks.IntegratedCallBackInterface;
 import gdbDriver.CallBacks.SimpleCallBackInterface;
+import gdbDriver.Commands.userCommands.UserCommandQueue;
 import gdbDriver.Output.OutputConfig;
 
 import java.util.Vector;
@@ -33,7 +34,7 @@ public class ErrorCatcher {
         return "catch catch";
     }
 
-    public void executeCallbacks(OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) {
+    public void executeCallbacks(OutputConfig outputConfig, UserCommandQueue userCommandQueue) {
         for (ElementaryCallbacksInterface callback : elementaryCallbacks) {
             callback.run();
         }

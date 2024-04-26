@@ -1,5 +1,6 @@
 package examples;
 
+import gdbDriver.Commands.userCommands.UserCommandQueue;
 import gdbDriver.Configer.BreakPoint;
 import gdbDriver.Configer.DebuggerConfig;
 import gdbDriver.Core.Driver;
@@ -16,10 +17,10 @@ public class IntegratedCallbackExample {
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
         BreakPoint breakPoint = new BreakPoint("IntegratedCallbacksExample.cpp", 11);
-        breakPoint.addCallback((OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) -> {
+        breakPoint.addCallback((OutputConfig outputConfig, UserCommandQueue userCommandQueue) -> {
             outputConfig.writeLine("Variable was successfully changed");
-            userCommandQueue.add("set variable g=1" + "\n");
-            userCommandQueue.add("continue" + "\n");
+            userCommandQueue.addCommand("set variable g=1");
+            userCommandQueue.addCommand("continue");
         });
         debuggerConfig.addBreakPoint(breakPoint);
 

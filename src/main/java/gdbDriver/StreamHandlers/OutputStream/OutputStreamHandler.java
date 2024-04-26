@@ -1,14 +1,15 @@
-package gdbDriver.StreamHandlers;
+package gdbDriver.StreamHandlers.OutputStream;
 
-import gdbDriver.Commands.Commands;
+import gdbDriver.Commands.userCommands.UserCommandQueue;
 import gdbDriver.Configer.DebuggerConfig;
 import gdbDriver.Output.OutputConfig;
 import gdbDriver.Output.OutputInformation.InformationFactory;
 import gdbDriver.Output.OutputInformation.OutputInformation;
 import gdbDriver.Output.OutputInformationWritter;
+import gdbDriver.StreamHandlers.CommandExecutor;
+import gdbDriver.StreamHandlers.ThreadManager;
 
 import java.io.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class OutputStreamHandler extends Thread {
 
@@ -20,7 +21,7 @@ public class OutputStreamHandler extends Thread {
     private final CommandExecutor commandExecutor;
 
     //Queue for user's commands
-    protected ConcurrentLinkedQueue<String> userCommandQueue;
+    protected UserCommandQueue userCommandQueue;
 
     //Object for Writing all line from gdb and preforming code visualization and other output configs
     private final OutputInformationWritter outputInformationWritter;
@@ -28,13 +29,13 @@ public class OutputStreamHandler extends Thread {
     //Object to stop all Threads after receiving exit command
     private final ThreadManager threadManager;
 
-    //Variable for counting rows to go up or down while code visualization
-    private int rowShift=0;
+    //Object, which contains variable for code visualization
+    private gdbDriver.StreamHandlers.OutputStream.State state;
 
     public OutputStreamHandler(InputStreamReader inputStreamReader, OutputStream outputStream,
                                DebuggerConfig debuggerConfig, OutputConfig outputConfig,
                                String directory,
-                               ConcurrentLinkedQueue<String> userCommandQueue,
+                               UserCommandQueue userCommandQueue,
                                ThreadManager threadManager) {
 
 
@@ -48,52 +49,59 @@ public class OutputStreamHandler extends Thread {
         this.outputConfig = outputConfig;
 
         this.threadManager=threadManager;
+
+        this.state = new gdbDriver.StreamHandlers.OutputStream.State(threadManager, outputInformationWritter);
     }
 
     public void run() {
         String location = null;
-        while (true) {
+        try {
+            while (true) {
+                Thread.sleep(10);
+                String newLine = commandExecutor.readNextLine();
 
-            String newLine = commandExecutor.readNextLine();
+                //Getting location where gdb hits breakpoint or catches an exception
+                String temp = tryToGetLocation(newLine);
+                location = temp != null ? temp : location;
 
-            //Getting location where gdb hits breakpoint or catches an exception
-            String temp = tryToGetLocation(newLine);
-            location= temp!=null ? temp : location;
+                //Creating the Object which will be shown on output,
+                // can be CodeOutputInformation (for line, which contains code)
+                // or GeneralOutputInformation (for all other Strings)
+                OutputInformation outputInformation = InformationFactory.createOutputInformation(newLine, location);
 
-            //Creating the Object which will be shown on output,
-            // can be CodeOutputInformation (for line, which contains code)
-            // or GeneralOutputInformation (for all other Strings)
-            OutputInformation outputInformation = InformationFactory.createOutputInformation(newLine,location);
+                //Printing information
+                outputInformationWritter.writeInfo(outputInformation);
 
-            //Printing information
-            outputInformationWritter.writeInfo(outputInformation);
+                userCommandQueue.executeNextCommand(commandExecutor, state);
+            }
+        } catch (InterruptedException e){
 
+        }
             //Executing next commands in userCommandQueue
-            boolean stopThread = executeCommandLoop();
-
-            //Checking if we hit exit command to stop all Threads
-            if(stopThread){
-                threadManager.stopAllThreads();
-                break;
-            }
-        }
+//            boolean stopThread = executeCommandLoop();
+//
+//            //Checking if we hit exit command to stop all Threads
+//            if(stopThread){
+//                threadManager.stopAllThreads();
+//                break;
+//            }
     }
-    private boolean executeCommandLoop(){
-        //Searching for every command, what isn't implemented in gdb, but affects code visualization
-        while(Commands.allCommands.contains(userCommandQueue.peek())){
-            String nextCommands = userCommandQueue.poll();
-            if(Commands.upCommands.contains(nextCommands)) {
-                rowShift-=1;
-            }else if(Commands.downCommands.contains(nextCommands)){
-                rowShift+=1;
-            }else if(Commands.resetCommands.contains(nextCommands)){
-                rowShift=0;
-            }
-            outputInformationWritter.writePreviousCodeWithShift(rowShift);
-        }
-        //Sending next command into gdb
-        return commandExecutor.executeUserCommand(userCommandQueue);
-    }
+//    private boolean executeCommandLoop(){
+//        //Searching for every command, what isn't implemented in gdb, but affects code visualization
+//        while(Commands.allCommands.contains(userCommandQueue.peek())){
+//            String nextCommands = userCommandQueue.poll();
+//            if(Commands.upCommands.contains(nextCommands)) {
+//                rowShift-=1;
+//            }else if(Commands.downCommands.contains(nextCommands)){
+//                rowShift+=1;
+//            }else if(Commands.resetCommands.contains(nextCommands)){
+//                rowShift=0;
+//            }
+//            outputInformationWritter.writePreviousCodeWithShift(rowShift);
+//        }
+//        //Sending next command into gdb
+//        return commandExecutor.executeUserCommand(userCommandQueue);
+//    }
 
     private String tryToGetLocation(String newLine) {
         //Getting location if gdb hit exception

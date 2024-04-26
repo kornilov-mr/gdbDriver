@@ -6,20 +6,23 @@ import java.util.Vector;
 public class Commands {
 
     public static Vector<String> upCommands = new Vector<>(Arrays.asList(
-            "up\n", "u\n", "Up\n", "U\n"
+            "up", "u", "Up", "U"
     ));
     public static Vector<String> downCommands = new Vector<>(Arrays.asList(
-            "down\n", "d\n", "Down\n", "D\n"
+            "down", "d", "Down", "D"
     ));
     public static Vector<String> resetCommands = new Vector<>(Arrays.asList(
-            "line reset\n", "reset\n"
+            "line reset", "reset"
     ));
-    public static Vector<String> allCommands = new Vector<>();
+    public static Vector<String> exitCommands = new Vector<>(Arrays.asList(
+       "exit","Exit","ex","Ex"
+    ));
+    public static Vector<String> allUserCommands = new Vector<>();
 
     static {
-        allCommands.addAll(upCommands);
-        allCommands.addAll(downCommands);
-        allCommands.addAll(resetCommands);
+        allUserCommands.addAll(upCommands);
+        allUserCommands.addAll(downCommands);
+        allUserCommands.addAll(resetCommands);
     }
 
 }

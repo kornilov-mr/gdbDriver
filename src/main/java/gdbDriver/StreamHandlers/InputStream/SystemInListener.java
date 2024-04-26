@@ -1,16 +1,17 @@
-package gdbDriver.StreamHandlers;
+package gdbDriver.StreamHandlers.InputStream;
+
+import gdbDriver.Commands.userCommands.UserCommandQueue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class SystemInListener extends Thread {
 
-    private final ConcurrentLinkedQueue<String> userCommandQueue;
+    private final UserCommandQueue userCommandQueue;
 
-    public SystemInListener(ConcurrentLinkedQueue<String> userCommandQueue) {
+    public SystemInListener(UserCommandQueue userCommandQueue) {
         this.userCommandQueue = userCommandQueue;
     }
 
@@ -22,7 +23,7 @@ public class SystemInListener extends Thread {
             try {
                 if (bufferedReader.ready()) {
                     String command = bufferedReader.readLine();
-                    userCommandQueue.add(command + "\n");
+                    userCommandQueue.addCommand(command);
                     Thread.sleep(100);
                 }
             } catch (InterruptedException e) {

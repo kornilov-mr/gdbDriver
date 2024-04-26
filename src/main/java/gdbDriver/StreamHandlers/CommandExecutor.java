@@ -40,19 +40,11 @@ public class CommandExecutor {
         }
     }
 
-    public boolean executeUserCommand(ConcurrentLinkedQueue<String> userCommandQueue) {
-        if (userCommandQueue.isEmpty()) {
-            return false;
-        }
-        //Sending command into gdb
+    public void executeCommand(String command){
         PrintWriter printWriter = new PrintWriter(outputStream);
-        String currCommand = userCommandQueue.poll();
-        printWriter.write(currCommand);
+        printWriter.write(command+"\n");
         printWriter.flush();
-        //Checking if we hit exit to then close Threads
-        return Objects.equals(currCommand, "exit\n");
     }
-
     public Vector<String> getLocalInfo() {
         //Sending command to gdb
         PrintWriter printWriter = new PrintWriter(outputStream);

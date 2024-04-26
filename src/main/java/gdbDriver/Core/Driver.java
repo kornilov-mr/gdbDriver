@@ -1,15 +1,15 @@
 package gdbDriver.Core;
 
+import gdbDriver.Commands.userCommands.UserCommandQueue;
 import gdbDriver.Configer.DebuggerConfig;
 import gdbDriver.Output.OutputConfig;
-import gdbDriver.StreamHandlers.ErrorStreamWriter;
-import gdbDriver.StreamHandlers.SystemInListener;
-import gdbDriver.StreamHandlers.OutputStreamHandler;
+import gdbDriver.StreamHandlers.ErrorStream.ErrorStreamWriter;
+import gdbDriver.StreamHandlers.InputStream.SystemInListener;
+import gdbDriver.StreamHandlers.OutputStream.OutputStreamHandler;
 import gdbDriver.StreamHandlers.ThreadManager;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 public class Driver {
@@ -18,7 +18,7 @@ public class Driver {
     private final OutputConfig outputConfig;
 
     //Object for user's input
-    private final ConcurrentLinkedQueue<String> userCommandQueue = new ConcurrentLinkedQueue<>();
+    private final UserCommandQueue userCommandQueue = new UserCommandQueue();
 
     private File sourceFile;
     private File executableFile;
