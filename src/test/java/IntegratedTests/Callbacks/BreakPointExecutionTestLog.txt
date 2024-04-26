@@ -1,8 +1,8 @@
 Reading symbols from C:\Users\ThinkPad\Desktop\gdbDriver\src\main\java\executableFiles\BreakPointExample.exe...
 Breakpoint 1 at 0x140001493: file BreakPointExample.cpp, line 9.
 Catchpoint 2 (catch)
-[New Thread 9876.0x2d00]
-[New Thread 9876.0x3eb0]
-[New Thread 9876.0x3e34]
+[New Thread 10540.0x3d10]
+[New Thread 10540.0x40a0]
+[New Thread 10540.0x3e0c]
 BreakPoint was executed
 Thread 1 hit Breakpoint 1, main () at BreakPointExample.cpp:9

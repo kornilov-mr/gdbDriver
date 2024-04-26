@@ -1,5 +1,6 @@
 package IntegratedTests.Callbacks;
 
+import gdbDriver.Commands.userCommands.UserCommandQueue;
 import gdbDriver.Configer.BreakPoint;
 import gdbDriver.Configer.ErrorCatcher;
 import gdbDriver.Configer.DebuggerConfig;
@@ -45,14 +46,14 @@ public class CallBackExecutionTests {
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
         BreakPoint testBreakPoint = new BreakPoint("BreakPointExample.cpp",9);
-        testBreakPoint.addCallback((OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) -> {
+        testBreakPoint.addCallback((OutputConfig outputConfig, UserCommandQueue userCommandQueue) -> {
             outputConfig.writeLine("BreakPoint was executed");
-            userCommandQueue.add("exit"+"\n");
+            userCommandQueue.addCommand("exit");
         });
 
         debuggerConfig.addBreakPoint(testBreakPoint);
 
-        OutputConfig outputConfig = new OutputConfig(true);
+        OutputConfig outputConfig = new OutputConfig(false);
         outputConfig.setLogFile(logFile);
 
         Driver driver = new Driver(debuggerConfig,outputConfig);
@@ -81,13 +82,13 @@ public class CallBackExecutionTests {
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
         ErrorCatcher catcher = new ErrorCatcher();
-        catcher.addCallback((OutputConfig outputConfig,ConcurrentLinkedQueue<String> userCommandQueue) ->{
+        catcher.addCallback((OutputConfig outputConfig,UserCommandQueue userCommandQueue) ->{
             outputConfig.writeLine("Cather was executed");
-            userCommandQueue.add("exit"+"\n");
+            userCommandQueue.addCommand("exit");
         });
         debuggerConfig.setCatcher(catcher);
 
-        OutputConfig outputConfig = new OutputConfig(true);
+        OutputConfig outputConfig = new OutputConfig(false);
         outputConfig.setLogFile(logFile);
 
         Driver driver = new Driver(debuggerConfig,outputConfig);
@@ -117,21 +118,21 @@ public class CallBackExecutionTests {
         DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");
 
         BreakPoint breakPoint = new BreakPoint("IntegratedCallbacksExample.cpp", 11);
-        breakPoint.addCallback((OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) -> {
+        breakPoint.addCallback((OutputConfig outputConfig, UserCommandQueue userCommandQueue) -> {
             outputConfig.writeLine("Variable was successfully changed");
-            userCommandQueue.add("set variable g=2" + "\n");
-            userCommandQueue.add("continue\n");
+            userCommandQueue.addCommand("set variable g=2");
+            userCommandQueue.addCommand("continue");
         });
         debuggerConfig.addBreakPoint(breakPoint);
 
         BreakPoint breakPoint2 = new BreakPoint("IntegratedCallbacksExample.cpp", 16);
-        breakPoint2.addCallback((OutputConfig outputConfig, ConcurrentLinkedQueue<String> userCommandQueue) -> {
-            userCommandQueue.add("exit\n");
+        breakPoint2.addCallback((OutputConfig outputConfig, UserCommandQueue userCommandQueue) -> {
+            userCommandQueue.addCommand("exit");
         });
         debuggerConfig.addBreakPoint(breakPoint2);
 
 
-        OutputConfig outputConfig = new OutputConfig(true);
+        OutputConfig outputConfig = new OutputConfig(false);
         outputConfig.setLogFile(logFile);
 
         Driver driver = new Driver(debuggerConfig,outputConfig);

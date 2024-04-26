@@ -4,33 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="Changed userCommandQueue from Queue to ConcurrentQueue and fixed typo in UsercommandQueue">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandImplementation/ExitCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandImplementation/GdbCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandImplementation/LineDownShiftCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandImplementation/LineResetCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandImplementation/LineUpShiftCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/userCommands/UserCommandQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStream/State.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/StreamReader.java" afterDir="false" />
+    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="added UserCommandQueue class with commands implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/examples/IntegratedCallbackExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/examples/IntegratedCallbackExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/CallBacks/IntegratedCallBackInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/CallBacks/IntegratedCallBackInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Commands/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/BreakPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/BreakPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/ErrorCatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Configer/ErrorCatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/CodeCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/CodeCompiler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/CommandExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/ErrorStreamWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/ErrorStream/ErrorStreamWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStreamHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStream/OutputStreamHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/SystemInListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/InputStream/SystemInListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/BreakPointExecutionTestLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/BreakPointExecutionTestLog.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CatcherExecutionTestLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CatcherExecutionTestLog.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +66,7 @@
       <recent name="gdbDriver.Commands.userCommands.UserCommandImplementation" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BreakPointExample">
+  <component name="RunManager" selected="JUnit.CallBackExecutionTests">
     <configuration name="BreakPointExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="examples.BreakPointExample" />
       <module name="gdbDriver" />
@@ -168,11 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BreakPointExample" />
         <item itemvalue="JUnit.CallBackExecutionTests" />
+        <item itemvalue="JUnit.CallBackExecutionTests.basicBreakPointExecutionTest" />
+        <item itemvalue="Application.BreakPointExample" />
         <item itemvalue="JUnit.CallBackExecutionTests.IntegratedCallbackExecutionTest" />
         <item itemvalue="JUnit.CallBackExecutionTests.CatherExecutionTest" />
-        <item itemvalue="JUnit.CallBackExecutionTests.basicBreakPointExecutionTest" />
       </list>
     </recent_temporary>
   </component>
@@ -257,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714038135910</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added UserCommandQueue class with commands implementation">
+      <option name="closed" value="true" />
+      <created>1714133074936</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714133074936</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -271,7 +256,8 @@
     <MESSAGE value="changed System.out to System.err for error writer" />
     <MESSAGE value="performed code reformat" />
     <MESSAGE value="Changed userCommandQueue from Queue to ConcurrentQueue and fixed typo in UsercommandQueue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed userCommandQueue from Queue to ConcurrentQueue and fixed typo in UsercommandQueue" />
+    <MESSAGE value="added UserCommandQueue class with commands implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="added UserCommandQueue class with commands implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -287,14 +273,14 @@
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/ErrorStream/ErrorStreamWriter.java</url>
           <line>25</line>
           <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/OutputStream/OutputStreamHandler.java</url>
