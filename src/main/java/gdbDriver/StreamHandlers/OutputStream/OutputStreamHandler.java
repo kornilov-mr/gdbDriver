@@ -72,36 +72,13 @@ public class OutputStreamHandler extends Thread {
                 //Printing information
                 outputInformationWritter.writeInfo(outputInformation);
 
+                //Executing next commands in userCommandQueue
                 userCommandQueue.executeNextCommand(commandExecutor, state);
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
 
         }
-            //Executing next commands in userCommandQueue
-//            boolean stopThread = executeCommandLoop();
-//
-//            //Checking if we hit exit command to stop all Threads
-//            if(stopThread){
-//                threadManager.stopAllThreads();
-//                break;
-//            }
     }
-//    private boolean executeCommandLoop(){
-//        //Searching for every command, what isn't implemented in gdb, but affects code visualization
-//        while(Commands.allCommands.contains(userCommandQueue.peek())){
-//            String nextCommands = userCommandQueue.poll();
-//            if(Commands.upCommands.contains(nextCommands)) {
-//                rowShift-=1;
-//            }else if(Commands.downCommands.contains(nextCommands)){
-//                rowShift+=1;
-//            }else if(Commands.resetCommands.contains(nextCommands)){
-//                rowShift=0;
-//            }
-//            outputInformationWritter.writePreviousCodeWithShift(rowShift);
-//        }
-//        //Sending next command into gdb
-//        return commandExecutor.executeUserCommand(userCommandQueue);
-//    }
 
     private String tryToGetLocation(String newLine) {
         //Getting location if gdb hit exception
