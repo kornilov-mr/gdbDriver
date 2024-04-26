@@ -28,12 +28,12 @@ With empty configs it will just run the code normaly without errorCatcher or any
 
 Configures how code and it's veriable will be shown in termenal whenever gdb hits a breakpoint triggers a catchcer
 
-Takes three or less parameters (enable/disable showing locals variables, range of lines of code, what will be shown, enable/disable console output)
+Takes three or fewer parameters (enable/disable showing local variables, range of lines of code, what will be shown, enable/disable console output)
 ```java
 OutputConfig outputConfig = new OutputConfig(true,3,true);
 ```
 
-Also has setLogFile function to set output file if needed
+Also has setLogFile function to set the output file if needed
 ```java
 outputConfig.setLogFile(logFile); //txt file, where output will go.
 ```
@@ -41,7 +41,7 @@ outputConfig.setLogFile(logFile); //txt file, where output will go.
 <br/>
 
 **BreakPoint:**
-Requirs file name and line, where should be set
+It requires a file name and line, where should be set
 ```java
 BreakPoint breakPoint = new BreakPoint("example.cpp", 11);
 ```
@@ -50,13 +50,13 @@ BreakPoint breakPoint = new BreakPoint("example.cpp", 11);
 
 **Catcher:**
 ```java
-Catcher errorCatcher = new Catcher();
+ErrorCatcher catcher = new ErrorCatcher();
 ```
 
 <br/>
 
 **Callbacks:**
-Callbacks are function what are exucuted when gdb hits breakpoint or catch an error, to which callbacks are set
+Callbacks are function what are exucuted when gdb hits breakpoint or catches an error, to which callbacks are set
 
 Elementary callbacks (Runnable implementaion)
 ```java
@@ -65,7 +65,7 @@ testBreakPoint.addCallback(() -> {
 });
 ```
 
-Simple callbacks (SimpleCallBackInterface implementaion),
+Simple callbacks (SimpleCallBackInterface implementation),
 Used to use output configurations from Driver
 ```java
 testBreakPoint.addCallback((OutputConfig outputConfig) -> {
@@ -74,12 +74,12 @@ testBreakPoint.addCallback((OutputConfig outputConfig) -> {
 ```
 
 Integrated callbacks (IntegratedCallBackInterface implmentaion)
-Used to add Commands directly to command queue. 
+Used to add Commands directly to the command queue. 
 ```java
-breakPoint.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueue) -> {
+breakPoint.addCallback((OutputConfig outputConfig, UserCommandQueue userCommandQueue) -> {
   outputConfig.writeLine("Variable was successfully changed");
-  userCommandQueue.add("set variable g=1" + "\n");
-  userCommandQueue.add("continue" + "\n");
+  userCommandQueue.addCommand("set variable g=1");
+  userCommandQueue.addCommand("continue");
 });
 ```
 *Use case: (displaying all local variables when gdb catches an error)*
@@ -88,7 +88,7 @@ breakPoint.addCallback((OutputConfig outputConfig, Queue<String> userCommandQueu
 
 **DebuggerConfig:**
 
-Configures breakpoint and errorCatcher and their callbacks, takes a path to debugger tool or PATH variable
+Configures breakpoint and errorCatcher and their callbacks, takes a path to the debugger tool or PATH variable
 ```java
 DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");. // Other degugger than gdb are not implemented
 ```
@@ -107,13 +107,13 @@ debuggerConfig.setCatcher(errorCatcher);
 
 ## Use exaples
 There are 4 use examples.
-They are located in (src/main/java/examples) with cpp sourse files for them
+They are located in (src/main/java/examples) with cpp source files for them
 
 <br/>
 
 ## Code scrolling
 3 commands were implemented on top of gdb already existed commands for code scrolling.
-Up Down and Reset (and their variations). 
+Up, Down and Reset (and their variations). 
 To go up and down in the source file line.
 
 ```bash
