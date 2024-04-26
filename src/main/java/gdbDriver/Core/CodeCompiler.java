@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class CodeCompiler {
     private final String cppVersion;
-
     private final Path folderForExecutablePath = Paths.get("src/main/java/executableFiles");
     public CodeCompiler(String cppVersion) {
         this.cppVersion = cppVersion;

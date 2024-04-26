@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="added UserCommandQueue class with commands implementation">
+    <list default="true" id="fce5bc42-4284-4620-a884-567533a978f6" name="Changes" comment="Deleted code, which isn't already used">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/BreakPointExecutionTestLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/BreakPointExecutionTestLog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/IntegratedCallbackExecutionTestLog.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/CodeCompiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gdbDriver/Core/CodeCompiler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +240,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714133074936</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Changed from ConcurrentQueue to UserCommandQueue in tests">
+      <option name="closed" value="true" />
+      <created>1714133455120</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714133455120</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Deleted code, which isn't already used">
+      <option name="closed" value="true" />
+      <created>1714133692178</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714133692178</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -257,7 +271,9 @@
     <MESSAGE value="performed code reformat" />
     <MESSAGE value="Changed userCommandQueue from Queue to ConcurrentQueue and fixed typo in UsercommandQueue" />
     <MESSAGE value="added UserCommandQueue class with commands implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added UserCommandQueue class with commands implementation" />
+    <MESSAGE value="Changed from ConcurrentQueue to UserCommandQueue in tests" />
+    <MESSAGE value="Deleted code, which isn't already used" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted code, which isn't already used" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -271,11 +287,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/IntegratedTests/OutputWritter/OutputWritterTest.java</url>
           <line>26</line>
           <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/gdbDriver/StreamHandlers/ErrorStream/ErrorStreamWriter.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/IntegratedTests/Callbacks/CallBackExecutionTests.java</url>

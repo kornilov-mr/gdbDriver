@@ -11,8 +11,8 @@ public class SystemParameters {
             args.add("cmd.exe");
             args.add("/c");
         } else {
-            //no support for linux
-            args.add("cmd.exe");
+            //linux
+            args.add("/bin/bash");
             args.add("/c");
         }
         return args;
