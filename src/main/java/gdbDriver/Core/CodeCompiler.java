@@ -11,6 +11,9 @@ public class CodeCompiler {
     private final Path folderForExecutablePath = Paths.get("src/main/java/executableFiles");
     public CodeCompiler(String cppVersion) {
         this.cppVersion = cppVersion;
+        if(!folderForExecutablePath.toFile().exists()){
+            folderForExecutablePath.toFile().mkdirs();
+        }
     }
 
     public File compileCode(File sourceFile) {
