@@ -35,7 +35,7 @@ public class OutputInformationWritter {
     public void writeInfo(OutputInformation outputInformation, int rowShift) {
         //Casts outputInformation into fitting class
         if (outputInformation instanceof CodeOutputInformation) {
-            write((CodeOutputInformation) outputInformation, rowShift, false);
+            write((CodeOutputInformation) outputInformation, rowShift, true);
         } else if (outputInformation instanceof GeneralOutputInformation) {
             write((GeneralOutputInformation) outputInformation);
         }

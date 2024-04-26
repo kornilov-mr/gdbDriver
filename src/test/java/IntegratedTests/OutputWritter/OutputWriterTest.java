@@ -72,7 +72,7 @@ public class OutputWriterTest {
         InputStream is = new ByteArrayInputStream(testCommands.getBytes());
         System.setIn(is);
 
-        OutputConfig outputConfig = new OutputConfig(true, 2,false);
+        OutputConfig outputConfig = new OutputConfig(true, 2,true);
         outputConfig.setLogFile(logFile);
         CommandExecutor commandExecutor = new CommandExecutor(new InputStreamReader(System.in), System.out);
         File directory = new File("src/main/java/examples/cppFiles");
@@ -87,7 +87,7 @@ public class OutputWriterTest {
         OutputInformation outputInformation = InformationFactory.createOutputInformation(line, location);
         CodeOutputInformation COI = (CodeOutputInformation) outputInformation;
 
-        OIW.writeInfo(COI);
+        OIW.writeInfo(COI,0);
 
         Vector<String> outputStrings = readLogFile(logFile);
         Vector<String> stringsNeeded= new Vector<>(Arrays.asList(
