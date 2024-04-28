@@ -48,14 +48,15 @@ public class CodeCompiler {
     private File createExecutableFile(File sourceFile) {
         String[] temp = sourceFile.getName().split("\\.");
         String extension = "." + temp[temp.length - 1];
-        File executableFile = folderForExecutablePath.resolve(sourceFile.getName().replace(extension, ".exe")).toFile();
+        File executableFile = folderForExecutablePath.resolve(
+                sourceFile.getName().replace(extension, SystemParameters.ExecutableFileExtension)).toFile();
         return executableFile;
     }
 
     private String createCompileExecuteString(File sourceFile, File executableFile) {
 
         return "g++ -g " + cppVersion + " " + sourceFile.getName() +
-                " -o " + executableFile.getAbsolutePath().replace(".exe", "");
+                " -o " + executableFile.getAbsolutePath().replace(SystemParameters.ExecutableFileExtension, "");
 
     }
 }
