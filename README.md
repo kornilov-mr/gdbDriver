@@ -11,29 +11,34 @@ To run a project simply clone it.
 git clone https://github.com/kornilov-mr/gdbDriver.git
 ```
 
+There are 4 use examples.
+They are located in (src/main/java/examples) with cpp source files for them.
+
+<br/>
+
 ## Usage
 
 **Driver:**
-The main class of the project, which takes two configs
+The main class of the project, which takes two configs.
 ```java
 Driver driver = new Driver(new debuggerConfig(), new OutputConfig());
 driver.load(sourceFile);      //cpp or c file, what you want to debug.
 driver.run();
 ```
-With empty configs it will just run the code normaly without errorCatcher or any breakpoints
+With empty configs it will just run the code normaly without errorCatcher or any breakpoints.
 
 <br/>
 
 **OutputConfig:**
 
-Configures how code and it's veriable will be shown in termenal whenever gdb hits a breakpoint triggers a catchcer
+Configures how code and it's veriable will be shown in termenal whenever gdb hits a breakpoint triggers a catcher.
 
-Takes three or fewer parameters (enable/disable showing local variables, range of lines of code, what will be shown, enable/disable console output)
+Takes three or fewer parameters (enable/disable showing local variables, range of lines of code, what will be shown, enable/disable console output).
 ```java
 OutputConfig outputConfig = new OutputConfig(true,3,true);
 ```
 
-Also has setLogFile function to set the output file if needed
+Also has setLogFile function to set the output file if needed.
 ```java
 outputConfig.setLogFile(logFile); //txt file, where output will go.
 ```
@@ -41,7 +46,7 @@ outputConfig.setLogFile(logFile); //txt file, where output will go.
 <br/>
 
 **BreakPoint:**
-It requires a file name and line, where should be set
+It requires a file name and line, where should be set.
 ```java
 BreakPoint breakPoint = new BreakPoint("example.cpp", 11);
 ```
@@ -56,9 +61,9 @@ ErrorCatcher catcher = new ErrorCatcher();
 <br/>
 
 **Callbacks:**
-Callbacks are function what are exucuted when gdb hits breakpoint or catches an error, to which callbacks are set
+Callbacks are function what are exucuted when gdb hits breakpoint or catches an error, to which callbacks are set.
 
-Elementary callbacks (Runnable implementaion)
+Elementary callbacks (ElementaryCallbacksInterface implementation).
 ```java
 testBreakPoint.addCallback(() -> {
   System.out.println("Main Thread hit the user's breakpoint");
@@ -66,14 +71,14 @@ testBreakPoint.addCallback(() -> {
 ```
 
 Simple callbacks (SimpleCallBackInterface implementation),
-Used to use output configurations from Driver
+Used to use output configurations from Driver.
 ```java
 testBreakPoint.addCallback((OutputConfig outputConfig) -> {
   outputConfig.writeLine("Main Thread hit the user's breakpoint");
 });
 ```
 
-Integrated callbacks (IntegratedCallBackInterface implmentaion)
+Integrated callbacks (IntegratedCallBackInterface implementation),
 Used to add Commands directly to the command queue. 
 ```java
 breakPoint.addCallback((OutputConfig outputConfig, UserCommandQueue userCommandQueue) -> {
@@ -88,26 +93,20 @@ breakPoint.addCallback((OutputConfig outputConfig, UserCommandQueue userCommandQ
 
 **DebuggerConfig:**
 
-Configures breakpoint and errorCatcher and their callbacks, takes a path to the debugger tool or PATH variable
+Configures breakpoint and errorCatcher and their callbacks, takes a path to the debugger tool or PATH variable.
 ```java
 DebuggerConfig debuggerConfig = new DebuggerConfig("gdb");. // Other degugger than gdb are not implemented
 ```
 
-Function to add a Breakpoint
+Function to add a Breakpoint.
 ```java
 debuggerConfig.addBreakPoint(breakPoint);
 ```
 
-Funciton to set up a Catcher
+Function to set up a Catcher.
 ```java
 debuggerConfig.setCatcher(errorCatcher);
 ```
-
-<br/>
-
-## Use exaples
-There are 4 use examples.
-They are located in (src/main/java/examples) with cpp source files for them
 
 <br/>
 
