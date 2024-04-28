@@ -28,19 +28,14 @@ public class CodeCompiler {
         args.add(createCompileExecuteString(sourceFile, executableFile));
         builder.command(args);
         try {
-            builder.start();
+            Process process = builder.start();
+            process.waitFor();
         } catch (IOException e) {
             System.out.println("A problem occurred during code compilation");
             System.out.println(createCompileExecuteString(sourceFile, executableFile));
             throw new RuntimeException(e);
-        }
-
-        while(!executableFile.exists()){
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         return executableFile;
     }
