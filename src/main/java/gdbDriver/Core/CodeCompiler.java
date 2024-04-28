@@ -1,7 +1,6 @@
 package gdbDriver.Core;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -13,6 +12,19 @@ public class CodeCompiler {
         this.cppVersion = cppVersion;
         if(!folderForExecutablePath.toFile().exists()){
             folderForExecutablePath.toFile().mkdirs();
+        }
+    }
+
+    private void printErrorsFromCompilation(InputStream inputStream) {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        try {
+            while (bufferedReader.ready()) {
+                String line = bufferedReader.readLine();
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("A problem occurred while reading the Error stream of code compilation");
+            throw new RuntimeException(e);
         }
     }
 
@@ -29,6 +41,8 @@ public class CodeCompiler {
         builder.command(args);
         try {
             Process process = builder.start();
+            InputStream errorStream = process.getErrorStream();
+            printErrorsFromCompilation(errorStream);
             process.waitFor();
         } catch (IOException e) {
             System.out.println("A problem occurred during code compilation");
