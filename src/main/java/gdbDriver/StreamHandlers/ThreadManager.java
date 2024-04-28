@@ -5,7 +5,7 @@ public class ThreadManager {
     private final Thread errorOutput;
     private final Thread userInput;
     private final Process GDBprocess;
-    private boolean alive = true;
+    private volatile boolean alive = true;
 
     public ThreadManager(Thread errorOutput, Thread userInput, Process gdBprocess) {
         this.errorOutput = errorOutput;
