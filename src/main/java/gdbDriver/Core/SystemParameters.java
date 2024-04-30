@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SystemParameters {
     private static final boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-    public static  String ExecutableFileExtension;
+    public static String ExecutableFileExtension;
     static {
         if(isWindows){
             ExecutableFileExtension=".exe";
@@ -21,7 +21,7 @@ public class SystemParameters {
         } else {
             //linux
             args.add("/bin/bash");
-            args.add("/c");
+            args.add("-c");
         }
         return args;
     }

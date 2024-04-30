@@ -5,12 +5,12 @@ import gdbDriver.StreamHandlers.CommandExecutor;
 import gdbDriver.StreamHandlers.OutputStream.State;
 
 public class ExitCommand extends UserCommandClass {
-    public ExitCommand(String command) {
-        super(command);
+    public ExitCommand(String command, CommandExecutor commandExecutor, State state) {
+        super(command, commandExecutor, state);
     }
 
     @Override
-    public void execute(CommandExecutor commandExecutor, State state) {
+    public void execute() {
         state.killThreads();
     }
 }

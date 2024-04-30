@@ -26,11 +26,6 @@ public class OutputStreamHandler extends Thread {
     //Object for Writing all line from gdb and preforming code visualization and other output configs
     private final OutputInformationWritter outputInformationWritter;
 
-    //Object to stop all Threads after receiving exit command
-    private final ThreadManager threadManager;
-
-    //Object, which contains variable for code visualization
-    private gdbDriver.StreamHandlers.OutputStream.State state;
 
     public OutputStreamHandler(InputStreamReader inputStreamReader, OutputStream outputStream,
                                DebuggerConfig debuggerConfig, OutputConfig outputConfig,
@@ -48,9 +43,11 @@ public class OutputStreamHandler extends Thread {
 
         this.outputConfig = outputConfig;
 
-        this.threadManager=threadManager;
 
-        this.state = new gdbDriver.StreamHandlers.OutputStream.State(threadManager, outputInformationWritter);
+        gdbDriver.StreamHandlers.OutputStream.State state = new gdbDriver.StreamHandlers.OutputStream.State(threadManager, outputInformationWritter);
+
+        userCommandQueue.setCommandExecutor(commandExecutor);
+        userCommandQueue.setState(state);
     }
 
     public void run() {
@@ -73,7 +70,7 @@ public class OutputStreamHandler extends Thread {
                 outputInformationWritter.writeInfo(outputInformation);
 
                 //Executing next commands in userCommandQueue
-                userCommandQueue.executeNextCommand(commandExecutor, state);
+                userCommandQueue.executeNextCommand();
             }
         } catch (InterruptedException e) {
 
