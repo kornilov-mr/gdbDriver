@@ -82,22 +82,24 @@ public class Driver {
         ProcessBuilder builder = new ProcessBuilder();
         builder.directory(this.executableFile.getParentFile());
 
-        ArrayList<String> args = SystemParameters.getArgs();
-        args.add(createGDBExecuteString(commandFile));
-
+        ArrayList<String> args = createGDBExecuteArgs(commandFile);
         builder.command(args);
 
         try {
             return builder.start();
         } catch (IOException e) {
-            System.out.println("A problem occurred during starting up the gdb \n" +
-                    "with command:" + createGDBExecuteString(commandFile));
+            System.out.println("A problem occurred during starting up the gdb");
             throw new RuntimeException(e);
         }
     }
 
-    private String createGDBExecuteString(File CommandFile) {
-        return debuggerConfig.createTerminalCommand() + " " + executableFile.getAbsolutePath() + " --command=" + CommandFile.getAbsolutePath() + " -q";
+    private ArrayList<String> createGDBExecuteArgs(File CommandFile) {
+        ArrayList<String> args = new ArrayList<>();
+        args.add(debuggerConfig.createTerminalCommand());
+        args.add(executableFile.getAbsolutePath());
+        args.add("--command="+CommandFile.getAbsolutePath());
+        args.add("-q");
+        return args;
     }
 
     public boolean isAlive(){

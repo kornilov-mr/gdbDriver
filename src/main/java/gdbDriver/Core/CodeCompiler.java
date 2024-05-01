@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class CodeCompiler {
     private final String cppVersion;
@@ -36,8 +37,7 @@ public class CodeCompiler {
 
         executableFile.delete();
 
-        ArrayList<String> args = SystemParameters.getArgs();
-        args.add(createCompileExecuteString(sourceFile, executableFile));
+        ArrayList<String> args = createCompileExecuteArgs(sourceFile, executableFile);
         builder.command(args);
         try {
             Process process = builder.start();
@@ -46,7 +46,6 @@ public class CodeCompiler {
             process.waitFor();
         } catch (IOException e) {
             System.out.println("A problem occurred during code compilation");
-            System.out.println(createCompileExecuteString(sourceFile, executableFile));
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -58,14 +57,19 @@ public class CodeCompiler {
         String[] temp = sourceFile.getName().split("\\.");
         String extension = "." + temp[temp.length - 1];
         File executableFile = folderForExecutablePath.resolve(
-                sourceFile.getName().replace(extension, SystemParameters.ExecutableFileExtension)).toFile();
+                sourceFile.getName().replace(extension, SystemParameters.executableFileExtension)).toFile();
         return executableFile;
     }
 
-    private String createCompileExecuteString(File sourceFile, File executableFile) {
-
-        return "g++ -g " + cppVersion + " " + sourceFile.getName() +
-                " -o " + executableFile.getAbsolutePath().replace(SystemParameters.ExecutableFileExtension, "");
+    private ArrayList<String> createCompileExecuteArgs(File sourceFile, File executableFile) {
+        ArrayList<String> args= new ArrayList<>();
+        args.add("g++");
+        args.add("-g");
+        args.add(cppVersion);
+        args.add(sourceFile.getName());
+        args.add("-o");
+        args.add(executableFile.getAbsolutePath().replace(SystemParameters.executableFileExtension, ""));
+        return args;
 
     }
 }
