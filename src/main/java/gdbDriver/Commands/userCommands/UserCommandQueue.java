@@ -7,27 +7,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class UserCommandQueue {
     private final ConcurrentLinkedQueue<UserCommandInterface> userCommands= new ConcurrentLinkedQueue<>();
-    private CommandExecutor commandExecutor;
-
-    //Object, which contains variable for code visualization
-    private State state;
-
-    public void setCommandExecutor(CommandExecutor commandExecutor) {
-        this.commandExecutor = commandExecutor;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
-
 
     public void addCommand(String command){
-        UserCommandInterface userCommand = UserCommandFactory.CreateUserCommand(command,commandExecutor,state);
+        UserCommandInterface userCommand = UserCommandFactory.CreateUserCommand(command);
         userCommands.add(userCommand);
     }
-    public void executeNextCommand(){
+    public void executeNextCommand(CommandExecutor commandExecutor,State state){
         if(!userCommands.isEmpty()){
-            userCommands.poll().execute();
+            userCommands.poll().execute(commandExecutor,state);
         }
     }
 

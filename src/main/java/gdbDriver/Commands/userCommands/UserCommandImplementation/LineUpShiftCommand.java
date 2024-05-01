@@ -5,12 +5,12 @@ import gdbDriver.StreamHandlers.CommandExecutor;
 import gdbDriver.StreamHandlers.OutputStream.State;
 
 public class LineUpShiftCommand extends UserCommandClass {
-    public LineUpShiftCommand(String command, CommandExecutor commandExecutor, State state) {
-        super(command, commandExecutor, state);
+    public LineUpShiftCommand(String command) {
+        super(command);
     }
 
     @Override
-    public void execute() {
+    public void execute(CommandExecutor commandExecutor, State state) {
         state.rowShift-=1;
         state.showLineWithUpdatedState();
     }

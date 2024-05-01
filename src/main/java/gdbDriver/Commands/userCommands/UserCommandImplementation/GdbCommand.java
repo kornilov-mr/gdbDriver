@@ -6,12 +6,12 @@ import gdbDriver.StreamHandlers.OutputStream.State;
 
 public class GdbCommand extends UserCommandClass {
 
-    public GdbCommand(String command, CommandExecutor commandExecutor, State state) {
-        super(command, commandExecutor, state);
+    public GdbCommand(String command) {
+        super(command);
     }
 
     @Override
-    public void execute() {
+    public void execute(CommandExecutor commandExecutor, State state) {
         commandExecutor.executeCommand(command);
     }
 }

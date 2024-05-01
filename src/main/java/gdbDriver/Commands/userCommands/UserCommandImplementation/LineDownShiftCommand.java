@@ -5,12 +5,12 @@ import gdbDriver.StreamHandlers.CommandExecutor;
 import gdbDriver.StreamHandlers.OutputStream.State;
 
 public class LineDownShiftCommand extends UserCommandClass {
-    public LineDownShiftCommand(String command, CommandExecutor commandExecutor, State state) {
-        super(command, commandExecutor, state);
+    public LineDownShiftCommand(String command) {
+        super(command);
     }
 
     @Override
-    public void execute() {
+    public void execute(CommandExecutor commandExecutor, State state) {
         state.rowShift+=1;
         state.showLineWithUpdatedState();
 

@@ -4,5 +4,5 @@ import gdbDriver.StreamHandlers.CommandExecutor;
 import gdbDriver.StreamHandlers.OutputStream.State;
 
 public interface UserCommandInterface {
-    public void execute();
+    public void execute(CommandExecutor commandExecutor, State state);
 }
