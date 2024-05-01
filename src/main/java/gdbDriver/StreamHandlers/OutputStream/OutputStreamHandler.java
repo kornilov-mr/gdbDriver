@@ -51,6 +51,7 @@ public class OutputStreamHandler extends Thread {
     }
 
     public void run() {
+
         String location = null;
         try {
             while (true) {
