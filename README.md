@@ -13,7 +13,7 @@ git clone https://github.com/kornilov-mr/gdbDriver.git
 
 There are 4 use examples.
 They are located in (src/main/java/examples) with cpp source files for them.
-
+Linux and Windows are supported
 <br/>
 
 ## Usage
