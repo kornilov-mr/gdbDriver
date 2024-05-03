@@ -144,7 +144,7 @@ public class CallBackExecutionTests {
         debuggerConfig.addBreakPoint(breakPoint2);
 
 
-        OutputConfig outputConfig = new OutputConfig(true);
+        OutputConfig outputConfig = new OutputConfig(false);
         outputConfig.setLogFile(logFile);
 
         Driver driver = new Driver(debuggerConfig,outputConfig);
