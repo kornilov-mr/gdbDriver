@@ -7,6 +7,7 @@ import gdbDriver.Output.OutputConfig;
 
 import java.io.File;
 
+// Example showing output setting, which might help during debugging
 public class OutputConfigurationExample {
     public static void main(String[] args) {
         File sourceFile = new File("src/main/java/examples/cppFiles/OutputConfigurationExample.cpp");

@@ -8,7 +8,7 @@ import gdbDriver.Output.OutputConfig;
 
 import java.io.File;
 
-
+// Simple breakpoint example to check basic functionality
 public class BreakPointExample {
     public static void main(String[] args) {
         File sourceFile = new File("src/main/java/examples/cppFiles/BreakPointExample.cpp");

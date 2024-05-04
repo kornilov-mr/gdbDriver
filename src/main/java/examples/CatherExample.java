@@ -7,6 +7,8 @@ import gdbDriver.Output.OutputConfig;
 
 import java.io.File;
 
+// Simple Cather example to check basic Cather functionality
+
 public class CatherExample {
 
     public static void main(String[] args) {

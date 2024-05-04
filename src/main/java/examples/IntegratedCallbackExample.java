@@ -7,9 +7,9 @@ import gdbDriver.Core.Driver;
 import gdbDriver.Output.OutputConfig;
 
 import java.io.File;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
+//Example for integrated callbacks, which allow to change variable on flight or just skip to the next breakpoint by
+//sending command to gdb on flight
 public class IntegratedCallbackExample {
     public static void main(String[] args) {
         File sourceFile = new File("src/main/java/examples/cppFiles/IntegratedCallbacksExample.cpp");
